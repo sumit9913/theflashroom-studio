@@ -13,13 +13,13 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["+91 98765 43210", "+91 98765 43211"],
+    details: ["+91 99673 99913", "+91 91366 98930"],
     subtitle: "Mon-Sat, 10am-7pm",
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["hello@theflashroom.in", "bookings@theflashroom.in"],
+    details: ["tfrstudio07@gmail.com", "sumit.m992@gmail.com"],
     subtitle: "We reply within 24 hours",
   },
   {
