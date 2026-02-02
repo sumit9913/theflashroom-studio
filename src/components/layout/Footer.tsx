@@ -111,14 +111,14 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-gold mt-0.5" />
                 <div>
-                  <p className="text-sm text-foreground">+91 98765 43210</p>
+                  <p className="text-sm text-foreground">+91 91366 98930</p>
                   <p className="text-xs text-muted-foreground">Mon-Sat, 10am-7pm</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-gold mt-0.5" />
                 <div>
-                  <p className="text-sm text-foreground">hello@theflashroom.in</p>
+                  <p className="text-sm text-foreground">tfrstudio07@gmail.com</p>
                   <p className="text-xs text-muted-foreground">We reply within 24hrs</p>
                 </div>
               </li>

@@ -90,7 +90,7 @@ export default function Contact() {
     });
   };
 
-  const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/919136698930?text=${encodeURIComponent(
     "Hi! I'm interested in booking a photography session with TheFlashRoom Studio."
   )}`;
 
@@ -168,7 +168,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="bg-card border-border focus:border-gold"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 91366 98930"
                     />
                   </div>
                 </div>

@@ -258,7 +258,7 @@ export default function Book() {
                           onChange={handleChange}
                           required
                           className="bg-background border-border focus:border-gold"
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 91366 98930"
                         />
                       </div>
                     </div>
