@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendBookEmail } from "@/lib/email";
 
 import heroWedding from "@/assets/hero-wedding.jpg";
 
@@ -67,31 +68,72 @@ export default function Book() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const eventTypeName =
+      eventTypes.find((event) => event.id === formData.eventType)?.name ?? "";
 
-    toast({
-      title: "Booking Request Submitted!",
-      description: "Thank you! Our team will contact you within 24 hours to discuss your requirements.",
-    });
+    try {
+      await sendBookEmail({
+        ...formData,
+        eventType: eventTypeName,
+      });
 
-    setFormData({
-      eventType: "",
-      name: "",
-      email: "",
-      phone: "",
-      eventDate: "",
-      eventLocation: "",
-      guestCount: "",
-      budget: "",
-      requirements: "",
-      referral: "",
-    });
-    setCurrentStep(1);
-    setIsSubmitting(false);
+      toast({
+        title: "Booking Request Submitted!",
+        description: "Thank you! Our team will contact you within 24 hours to discuss your requirements.",
+      });
+
+      if (typeof window !== "undefined") {
+        window.open(whatsappUrl, "_blank");
+      }
+
+      setFormData({
+        eventType: "",
+        name: "",
+        email: "",
+        phone: "",
+        eventDate: "",
+        eventLocation: "",
+        guestCount: "",
+        budget: "",
+        requirements: "",
+        referral: "",
+      });
+      setCurrentStep(1);
+    } catch (error) {
+      toast({
+        title: "Booking Failed",
+        description: "Please try again in a moment or reach out via WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const canProceedStep1 = formData.eventType !== "";
   const canProceedStep2 = formData.name && formData.email && formData.phone;
+  const selectedEventName =
+    eventTypes.find((event) => event.id === formData.eventType)?.name ?? "";
+
+  const whatsappMessage = [
+    "Hi! I'm interested in booking a photography session with TheFlashRoom Studio.",
+    selectedEventName && `Event Type: ${selectedEventName}`,
+    formData.name && `Name: ${formData.name}`,
+    formData.email && `Email: ${formData.email}`,
+    formData.phone && `Phone: ${formData.phone}`,
+    formData.eventDate && `Event Date: ${formData.eventDate}`,
+    formData.eventLocation && `Location: ${formData.eventLocation}`,
+    formData.guestCount && `Guest Count: ${formData.guestCount}`,
+    formData.budget && `Budget: ${formData.budget}`,
+    formData.requirements && `Requirements: ${formData.requirements}`,
+    formData.referral && `Referral: ${formData.referral}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const whatsappUrl = `https://wa.me/919136698930?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
 
   return (
     <Layout>
@@ -105,7 +147,7 @@ export default function Book() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         </div>
-        
+
         <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -118,7 +160,7 @@ export default function Book() {
               Let's Create <span className="text-gold-gradient">Magic Together</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Fill in the details below and our team will get back to you 
+              Fill in the details below and our team will get back to you
               within 24 hours with a customized quote.
             </p>
           </motion.div>
@@ -134,11 +176,10 @@ export default function Book() {
               <div key={step.number} className="flex items-center">
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center font-display font-bold transition-all duration-300 ${
-                      currentStep >= step.number
-                        ? "bg-gold text-background"
-                        : "bg-muted text-muted-foreground"
-                    }`}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center font-display font-bold transition-all duration-300 ${currentStep >= step.number
+                      ? "bg-gold text-background"
+                      : "bg-muted text-muted-foreground"
+                      }`}
                   >
                     {currentStep > step.number ? (
                       <Check className="w-6 h-6" />
@@ -153,9 +194,8 @@ export default function Book() {
                 </div>
                 {index < steps.length - 1 && (
                   <div
-                    className={`w-16 sm:w-24 h-1 mx-2 sm:mx-4 transition-all duration-300 ${
-                      currentStep > step.number ? "bg-gold" : "bg-muted"
-                    }`}
+                    className={`w-16 sm:w-24 h-1 mx-2 sm:mx-4 transition-all duration-300 ${currentStep > step.number ? "bg-gold" : "bg-muted"
+                      }`}
                   />
                 )}
               </div>
@@ -183,11 +223,10 @@ export default function Book() {
                         key={event.id}
                         type="button"
                         onClick={() => handleEventSelect(event.id)}
-                        className={`p-6 rounded-lg border-2 transition-all duration-300 hover:-translate-y-1 ${
-                          formData.eventType === event.id
-                            ? "border-gold bg-gold/10"
-                            : "border-border hover:border-gold/50"
-                        }`}
+                        className={`p-6 rounded-lg border-2 transition-all duration-300 hover:-translate-y-1 ${formData.eventType === event.id
+                          ? "border-gold bg-gold/10"
+                          : "border-border hover:border-gold/50"
+                          }`}
                       >
                         <div className="text-3xl mb-2">{event.icon}</div>
                         <div className="text-sm font-medium text-foreground">{event.name}</div>
@@ -440,3 +479,6 @@ export default function Book() {
     </Layout>
   );
 }
+
+
+

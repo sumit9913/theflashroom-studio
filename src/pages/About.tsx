@@ -32,19 +32,49 @@ const values = [
 
 const teamMembers = [
   {
-    name: "Rajesh Kumar",
-    role: "Lead Photographer & Founder",
-    bio: "With over 15 years of experience capturing Indian weddings, Rajesh brings artistic vision and technical mastery to every shoot.",
+    name: "Boopathy Durairaj",
+    role: "Lead Photographer",
+    bio: "With over 10 years of experience capturing Indian weddings, Boopathy brings artistic vision and technical mastery to every shoot.",
   },
   {
-    name: "Ananya Sharma",
-    role: "Creative Director",
-    bio: "Ananya's eye for detail and passion for storytelling ensures every project maintains our signature cinematic style.",
+    name: "Sumit Maurya",
+    role: "Client Experience Manager",
+    bio: "Sumit coordinates schedules, timelines, and deliverables so your experience stays seamless and stress-free.",
   },
   {
-    name: "Vikram Patel",
+    name: "Surya Gounder",
     role: "Cinematographer",
-    bio: "Vikram crafts stunning wedding films that capture the magic of your celebration with Hollywood-quality production values.",
+    bio: "Surya crafts stunning wedding films that capture the magic of your celebration with Hollywood-quality production values.",
+  },
+  {
+    name: "Muskan Mujawar",
+    role: "Creative Director",
+    bio: "Muskan's eye for detail and passion for storytelling ensures every project maintains our signature cinematic style.",
+  },
+  {
+    name: "Meezan",
+    role: "Video Editor",
+    bio: "Meezan refines every frame with a keen eye for color, pacing, and timeless finishing that elevates your story.",
+  },
+  {
+    name: "Andrew Pillai",
+    role: "Instagram & Digital Marketing",
+    bio: "Andrew manages our Instagram presence and digital campaigns to showcase your stories to the world.",
+  },
+  {
+    name: "Riya",
+    role: "Creative Handler",
+    bio: "Riya keeps concepts aligned and ensures every detail supports the story we want to tell.",
+  },
+  {
+    name: "Ganesh",
+    role: "Production Assistant",
+    bio: "Ganesh supports the team on-set, keeping shoots running smoothly and efficiently.",
+  },
+  {
+    name: "Mahesh",
+    role: "Videographer",
+    bio: "Mahesh captures cinematic footage with a focus on emotion, movement, and atmosphere.",
   },
 ];
 
@@ -71,7 +101,7 @@ export default function About() {
           >
             <span className="text-gold font-elegant text-lg tracking-widest uppercase">About Us</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold mt-4 mb-6">
-              Crafting Visual Stories Since <span className="text-gold-gradient">2014</span>
+              Crafting Visual Stories Since <span className="text-gold-gradient">2024</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               TheFlashRoom Studio was born from a passion for capturing the rich cultural tapestry 
@@ -99,7 +129,7 @@ export default function About() {
                   className="rounded-lg w-full"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-gold text-background p-6 rounded-lg">
-                  <div className="font-display text-3xl font-bold">10+</div>
+                  <div className="font-display text-3xl font-bold">5+</div>
                   <div className="text-sm">Years of Excellence</div>
                 </div>
               </div>
@@ -118,8 +148,8 @@ export default function About() {
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   What started as a love for capturing candid moments at family gatherings has evolved 
-                  into one of India's most sought-after wedding photography studios. Our founder, Rajesh Kumar, 
-                  began his journey with a simple belief: every moment deserves to be remembered.
+                  into one of India's most sought-after wedding photography studios.  
+                  We began our journey with a simple belief: every moment deserves to be remembered.
                 </p>
                 <p>
                   Over the years, we've had the privilege of documenting thousands of weddings across India 

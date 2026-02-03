@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendContactEmail } from "@/lib/email";
 
 import heroWedding from "@/assets/hero-wedding.jpg";
 
@@ -62,23 +63,35 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await sendContactEmail(formData);
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you within 24 hours.",
-    });
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. We'll get back to you within 24 hours.",
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      eventType: "",
-      eventDate: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      if (typeof window !== "undefined") {
+        window.open(whatsappUrl, "_blank");
+      }
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        eventType: "",
+        eventDate: "",
+        message: "",
+      });
+    } catch (error) {
+      toast({
+        title: "Message Failed",
+        description: "Please try again in a moment or reach out via WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -90,8 +103,20 @@ export default function Contact() {
     });
   };
 
+  const whatsappMessage = [
+    "Hi! I'm interested in booking a photography session with TheFlashRoom Studio.",
+    formData.name && `Name: ${formData.name}`,
+    formData.email && `Email: ${formData.email}`,
+    formData.phone && `Phone: ${formData.phone}`,
+    formData.eventType && `Event Type: ${formData.eventType}`,
+    formData.eventDate && `Event Date: ${formData.eventDate}`,
+    formData.message && `Message: ${formData.message}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
   const whatsappUrl = `https://wa.me/919136698930?text=${encodeURIComponent(
-    "Hi! I'm interested in booking a photography session with TheFlashRoom Studio."
+    whatsappMessage
   )}`;
 
   return (

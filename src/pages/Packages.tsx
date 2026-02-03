@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Star, Sparkles } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
@@ -249,6 +250,12 @@ const servicePackages = [
 ];
 
 export default function Packages() {
+  const services = useMemo(() => servicePackages.map((item) => item.service), []);
+  const [selectedService, setSelectedService] = useState<string>(services[0] ?? "");
+  const selectedPackage = servicePackages.find(
+    (item) => item.service === selectedService,
+  );
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -282,80 +289,109 @@ export default function Packages() {
       </section>
 
       {/* Packages */}
-      {servicePackages.map((service, serviceIndex) => (
-        <section
-          key={service.service}
-          className={`section-padding ${serviceIndex % 2 === 0 ? "bg-background" : "bg-card"}`}
-        >
-          <div className="container-custom">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="font-display text-2xl md:text-4xl font-bold">
-                {service.service}
-              </h2>
-            </motion.div>
+      <section className="section-padding bg-background">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-10"
+          >
+            <span className="text-gold font-elegant text-lg tracking-widest uppercase">
+              Choose a Category
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-bold mt-4">
+              Select the Service You Need
+            </h2>
+          </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {service.plans.map((plan, planIndex) => (
-                <motion.div
-                  key={plan.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: planIndex * 0.1, duration: 0.6 }}
-                  className={`relative rounded-xl p-8 border transition-all duration-300 hover:-translate-y-2 ${
-                    plan.highlighted
-                      ? "bg-gradient-to-b from-gold/10 to-gold/5 border-gold shadow-lg shadow-gold/10"
-                      : "bg-card border-border hover:border-gold/30"
-                  }`}
-                >
-                  {plan.highlighted && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="inline-flex items-center gap-1 bg-gold text-background text-xs font-semibold px-4 py-1.5 rounded-full">
-                        <Sparkles className="w-3 h-3" />
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="text-center mb-6">
-                    <h3 className="font-display text-xl font-semibold mb-2">{plan.name}</h3>
-                    <div className="flex items-baseline justify-center gap-1 mb-3">
-                      <span className="font-display text-4xl font-bold text-gold-gradient">
-                        {plan.price}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{plan.description}</p>
-                  </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-foreground/80">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link to="/book" className="block">
-                    <Button
-                      variant={plan.highlighted ? "gold" : "gold-outline"}
-                      className="w-full"
-                    >
-                      Book Now
-                    </Button>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            {services.map((service) => (
+              <Button
+                key={service}
+                variant={service === selectedService ? "gold" : "gold-outline"}
+                onClick={() => setSelectedService(service)}
+                className="rounded-full px-6"
+              >
+                {service}
+              </Button>
+            ))}
           </div>
-        </section>
-      ))}
+
+          {selectedPackage && (
+            <div className="bg-card rounded-2xl p-6 md:p-10 border border-border">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-center mb-12"
+              >
+                <h2 className="font-display text-2xl md:text-4xl font-bold">
+                  {selectedPackage.service}
+                </h2>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 gap-8">
+                {selectedPackage.plans.map((plan, planIndex) => (
+                  <motion.div
+                    key={plan.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: planIndex * 0.1, duration: 0.6 }}
+                    className={`relative rounded-xl p-8 border transition-all duration-300 hover:-translate-y-2 ${
+                      plan.highlighted
+                        ? "bg-gradient-to-b from-gold/10 to-gold/5 border-gold shadow-lg shadow-gold/10"
+                        : "bg-background border-border hover:border-gold/30"
+                    }`}
+                  >
+                    {plan.highlighted && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                        <span className="inline-flex items-center gap-1 bg-gold text-background text-xs font-semibold px-4 py-1.5 rounded-full">
+                          <Sparkles className="w-3 h-3" />
+                          Most Popular
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="text-center mb-6">
+                      <h3 className="font-display text-xl font-semibold mb-2">
+                        {plan.name}
+                      </h3>
+                      <div className="flex items-baseline justify-center gap-1 mb-3">
+                        <span className="font-display text-4xl font-bold text-gold-gradient">
+                          {plan.price}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{plan.description}</p>
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground/80">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link to="/book" className="block">
+                      <Button
+                        variant={plan.highlighted ? "gold" : "gold-outline"}
+                        className="w-full"
+                      >
+                        Book Now
+                      </Button>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Custom Quote CTA */}
       <section className="section-padding bg-card">
