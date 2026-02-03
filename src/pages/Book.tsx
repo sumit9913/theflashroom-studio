@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { sendBookEmail } from "@/lib/email";
 
 import heroWedding from "@/assets/hero-wedding.jpg";
 
@@ -68,14 +67,26 @@ export default function Book() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const eventTypeName =
-      eventTypes.find((event) => event.id === formData.eventType)?.name ?? "";
-
     try {
-      await sendBookEmail({
+      const eventTypeName =
+        eventTypes.find((event) => event.id === formData.eventType)?.name ?? "";
+
+      const formBody = new URLSearchParams({
+        "form-name": "booking",
+        "bot-field": "",
         ...formData,
         eventType: eventTypeName,
+      }).toString();
+
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
       });
+
+      if (!response.ok) {
+        throw new Error("Netlify form submission failed");
+      }
 
       toast({
         title: "Booking Request Submitted!",
@@ -210,7 +221,19 @@ export default function Book() {
             transition={{ duration: 0.3 }}
             className="bg-card rounded-xl p-8 md:p-12 border border-border"
           >
-            <form onSubmit={handleSubmit}>
+            <form
+              name="booking"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+            >
+              <input type="hidden" name="form-name" value="booking" />
+              <p className="hidden">
+                <label>
+                  Don’t fill this out if you’re human: <input name="bot-field" />
+                </label>
+              </p>
               {/* Step 1: Event Type */}
               {currentStep === 1 && (
                 <div>

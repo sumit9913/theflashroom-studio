@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { sendContactEmail } from "@/lib/email";
 
 import heroWedding from "@/assets/hero-wedding.jpg";
 
@@ -64,7 +63,21 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      await sendContactEmail(formData);
+      const formBody = new URLSearchParams({
+        "form-name": "contact",
+        "bot-field": "",
+        ...formData,
+      }).toString();
+
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody,
+      });
+
+      if (!response.ok) {
+        throw new Error("Netlify form submission failed");
+      }
 
       toast({
         title: "Message Sent!",
@@ -166,7 +179,20 @@ export default function Contact() {
                 Send Us a Message
               </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <p className="hidden">
+                  <label>
+                    Don’t fill this out if you’re human: <input name="bot-field" />
+                  </label>
+                </p>
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">

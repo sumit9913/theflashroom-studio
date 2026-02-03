@@ -52,7 +52,7 @@ const teamMembers = [
     bio: "Muskan's eye for detail and passion for storytelling ensures every project maintains our signature cinematic style.",
   },
   {
-    name: "Meezan",
+    name: "Meezan Shaikh",
     role: "Video Editor",
     bio: "Meezan refines every frame with a keen eye for color, pacing, and timeless finishing that elevates your story.",
   },
@@ -62,17 +62,17 @@ const teamMembers = [
     bio: "Andrew manages our Instagram presence and digital campaigns to showcase your stories to the world.",
   },
   {
-    name: "Riya",
+    name: "Karthik Konar",
     role: "Creative Handler",
-    bio: "Riya keeps concepts aligned and ensures every detail supports the story we want to tell.",
+    bio: "Karthik keeps concepts aligned and ensures every detail supports the story we want to tell.",
   },
   {
-    name: "Ganesh",
+    name: "Ganesh Vanniar",
     role: "Production Assistant",
     bio: "Ganesh supports the team on-set, keeping shoots running smoothly and efficiently.",
   },
   {
-    name: "Mahesh",
+    name: "Mahesh Chettiar",
     role: "Videographer",
     bio: "Mahesh captures cinematic footage with a focus on emotion, movement, and atmosphere.",
   },
