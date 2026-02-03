@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +10,7 @@
   <meta name="description" content="The Flash Room Studio" />
   <meta name="Sumit Maurya" content="TFR Studio" />
 
+
   <!-- TODO: Update og:title to match your application name -->
   <meta property="og:title" content="TFR Studio" />
   <meta property="og:description" content="The Flash Room Studio" />
@@ -16,13 +18,41 @@
   <meta property="og:url" content="https://theflashroom.in" />
   <meta property="og:image" content="https://theflashroom.in/og-image.png" />
 
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://theflashroom.in/og-image.png" />
 </head>
 
+
 <body>
   <div id="root"></div>
+  <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="contact" />
+    <input name="bot-field" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="eventType" />
+    <input type="date" name="eventDate" />
+    <textarea name="message"></textarea>
+  </form>
+  <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="booking" />
+    <input name="bot-field" />
+    <input type="text" name="eventType" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="date" name="eventDate" />
+    <input type="text" name="eventLocation" />
+    <input type="text" name="guestCount" />
+    <input type="text" name="budget" />
+    <textarea name="requirements"></textarea>
+    <input type="text" name="referral" />
+  </form>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
+
 </html>
+
