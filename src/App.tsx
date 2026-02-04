@@ -12,6 +12,10 @@ import Packages from "./pages/Packages";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import Book from "./pages/Book";
+import PortfolioAlbum from "./pages/PortfolioAlbum";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import LLMs from "./pages/LLMs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +36,10 @@ const App = () => (
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book" element={<Book />} />
+          <Route path="/portfolio/:albumId" element={<PortfolioAlbum />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/llms" element={<LLMs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -4,6 +4,7 @@ import { X, Play, Filter } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 import heroWedding from "@/assets/hero-wedding.jpg";
 import prewedding from "@/assets/prewedding.jpg";
@@ -31,6 +32,107 @@ const portfolioItems = [
   { id: 12, src: babyshower, category: "Baby Showers", title: "Baby Shower Party", location: "Chennai" },
 ];
 
+const portfolioAlbums = [
+  {
+    id: "priya-rahul-wedding-udaipur",
+    title: "Priya & Rahul Wedding",
+    category: "Weddings",
+    location: "Udaipur",
+    cover: heroWedding,
+    images: [heroWedding, haldi, sangeet, phera],
+  },
+  {
+    id: "sneha-amit-prewedding-jaipur",
+    title: "Sneha & Amit Pre-Wedding",
+    category: "Pre-Weddings",
+    location: "Jaipur",
+    cover: prewedding,
+    images: [prewedding, heroWedding, event],
+  },
+  {
+    id: "traditional-haldi-mumbai",
+    title: "Traditional Haldi Ceremony",
+    category: "Weddings",
+    location: "Mumbai",
+    cover: haldi,
+    images: [haldi, heroWedding, sangeet],
+  },
+  {
+    id: "sangeet-night-delhi",
+    title: "Sangeet Night Celebration",
+    category: "Weddings",
+    location: "Delhi",
+    cover: sangeet,
+    images: [sangeet, heroWedding, phera],
+  },
+  {
+    id: "sacred-phera-bangalore",
+    title: "Sacred Phera Ceremony",
+    category: "Weddings",
+    location: "Bangalore",
+    cover: phera,
+    images: [phera, heroWedding, haldi],
+  },
+  {
+    id: "godh-bharai-pune",
+    title: "Godh Bharai Celebration",
+    category: "Baby Showers",
+    location: "Pune",
+    cover: babyshower,
+    images: [babyshower, heroWedding, birthday],
+  },
+  {
+    id: "50th-birthday-mumbai",
+    title: "50th Birthday Celebration",
+    category: "Others",
+    location: "Mumbai",
+    cover: birthday,
+    images: [birthday, event, heroWedding],
+  },
+  {
+    id: "corporate-annual-dinner-hyderabad",
+    title: "Corporate Annual Dinner",
+    category: "Events",
+    location: "Hyderabad",
+    cover: event,
+    images: [event, heroWedding, birthday],
+  },
+  {
+    id: "kavita-vikram-wedding-goa",
+    title: "Kavita & Vikram Wedding",
+    category: "Weddings",
+    location: "Goa",
+    cover: heroWedding,
+    images: [heroWedding, phera, sangeet],
+  },
+  {
+    id: "romantic-beach-prewedding-goa",
+    title: "Romantic Beach Pre-Wedding Shoot",
+    category: "Pre-Weddings",
+    location: "Goa",
+    cover: prewedding,
+    images: [prewedding, heroWedding, sangeet],
+  },
+  {
+    id: "mehndi-night-jaipur",
+    title: "Mehndi Night Celebration",
+    category: "Weddings",
+    location: "Jaipur",
+    cover: sangeet,
+    images: [sangeet, haldi, heroWedding],
+  },
+  {
+    id: "baby-shower-chennai",
+    title: "Baby Shower Party",
+    category: "Baby Showers",
+    location: "Chennai",
+    cover: babyshower,
+    images: [babyshower, birthday, heroWedding],
+  },
+];
+
+
+
 const reels = [
   { id: 1, title: "Priya & Rahul - Wedding Film", thumbnail: heroWedding },
   { id: 2, title: "Destination Wedding Highlights", thumbnail: phera },
@@ -40,10 +142,9 @@ const reels = [
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<typeof portfolioItems[0] | null>(null);
 
-  const filteredItems = portfolioItems.filter(
-    (item) => selectedCategory === "All" || item.category === selectedCategory
+  const filteredAlbums = portfolioAlbums.filter(
+    (album) => selectedCategory === "All" || album.category === selectedCategory
   );
 
   return (
@@ -69,19 +170,21 @@ export default function Portfolio() {
             },
             "mainEntity": {
               "@type": "ItemList",
-              "name": "Photography Portfolio Items",
-              "itemListElement": portfolioItems.map((p, i) => ({
+              "name": "Photography Portfolio Albums",
+              "itemListElement": portfolioAlbums.map((a, i) => ({
                 "@type": "ListItem",
                 "position": i + 1,
-                "name": `${p.title} (${p.category})`,
+                "name": `${a.title} (${a.category})`,
                 "item": {
-                  "@type": "CreativeWork",
-                  "name": p.title,
-                  "genre": p.category,
-                  "locationCreated": p.location
+                  "@type": "CollectionPage",
+                  "name": a.title,
+                  "genre": a.category,
+                  "locationCreated": a.location,
+                  "url": `https://theflashroom.in/portfolio/${a.id}`
                 }
               }))
             }
+
           })}
         </script>
 
@@ -143,38 +246,44 @@ export default function Portfolio() {
           <div className="container-custom">
             <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <AnimatePresence mode="popLayout">
-                {filteredItems.map((item, index) => (
+                {filteredAlbums.map((album, index) => (
                   <motion.div
-                    key={item.id}
+                    key={album.id}
                     layout
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={`group cursor-pointer ${index % 5 === 0 ? "md:col-span-2 md:row-span-2" : ""
-                      }`}
-                    onClick={() => setSelectedImage(item)}
+                    className={`group ${index % 5 === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
                   >
-                    <div className="relative overflow-hidden rounded-lg aspect-square h-full">
-                      <img
-                        src={item.src}
-                        alt={`${item.title} - ${item.category} photography in ${item.location} by The Flash Room Studio`}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
+                    <Link to={`/portfolio/${album.id}`} className="block">
+                      <div className="relative overflow-hidden rounded-lg aspect-square h-full">
+                        <img
+                          src={album.cover}
+                          alt={`${album.title} - ${album.category} photography in ${album.location} by The Flash Room Studio`}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h3 className="font-display text-sm md:text-base font-semibold text-foreground mb-1">
-                            {item.title}
-                          </h3>
-                          <p className="text-gold text-xs md:text-sm">{item.location}</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="font-display text-sm md:text-base font-semibold text-foreground mb-1">
+                              {album.title}
+                            </h3>
+                            <p className="text-gold text-xs md:text-sm">{album.location}</p>
+
+                            {/* SEO helper text */}
+                            <p className="sr-only">
+                              View {album.title} album from {album.location}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </motion.div>
                 ))}
+
               </AnimatePresence>
             </motion.div>
           </div>
@@ -234,7 +343,7 @@ export default function Portfolio() {
         </section>
 
         {/* Lightbox */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {selectedImage && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -270,7 +379,7 @@ export default function Portfolio() {
               </motion.div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </Layout>
     </>
   );

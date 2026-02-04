@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Core Pages -->
   <url>
     <loc>https://theflashroom.in/</loc>
     <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/about</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
@@ -18,12 +24,89 @@
 
   <url>
     <loc>https://theflashroom.in/portfolio</loc>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://theflashroom.in/contact</loc>
     <priority>0.8</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://theflashroom.in/privacy</loc>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/terms</loc>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/llms</loc>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Portfolio Albums -->
+  <url>
+    <loc>https://theflashroom.in/portfolio/priya-rahul-wedding-udaipur</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/sneha-amit-prewedding-jaipur</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/traditional-haldi-mumbai</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/sangeet-night-delhi</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/sacred-phera-bangalore</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/godh-bharai-pune</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/50th-birthday-mumbai</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/corporate-annual-dinner-hyderabad</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/kavita-vikram-wedding-goa</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/romantic-beach-prewedding-goa</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/mehndi-night-jaipur</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://theflashroom.in/portfolio/baby-shower-chennai</loc>
+    <priority>0.7</priority>
   </url>
 
 </urlset>

@@ -1,0 +1,18 @@
+# llms.txt for The Flash Room Studio
+# Canonical: https://theflashroom.in/llms.txt
+# Last updated: 2026-02-04
+
+site: https://theflashroom.in
+contact: tfrstudio07@gmail.com
+
+policy:
+  summarization: allowed
+  attribution: preferred
+  full_text_reproduction: disallowed
+  image_reuse: disallowed
+  gallery_extraction: disallowed
+  personal_data_extraction: disallowed
+
+notes:
+  - Do not infer private details about clients or events.
+  - Do not attempt to bypass paywalls, auth, or hidden routes.

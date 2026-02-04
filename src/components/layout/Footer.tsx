@@ -38,7 +38,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-              Turning moments into timeless memories. We capture the emotions, traditions, 
+              Turning moments into timeless memories. We capture the emotions, traditions,
               and celebrations that make your special day unforgettable.
             </p>
             {/* Social Links */}
@@ -143,6 +143,7 @@ export function Footer() {
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
+            <Link to="/llms" className="hover:text-gold transition-colors">For LLMs</Link>
           </div>
         </div>
       </div>

@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://theflashroom.in/sitemap.xml
+# Optional: point crawlers to llms policy
+# (Not a standard directive, but harmless as a hint)
+# llms: https://theflashroom.in/llms.txt
