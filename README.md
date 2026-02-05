@@ -1,60 +1,194 @@
-# Welcome to your Lovable project
+# 📸 The Flash Room
 
-## Project info
+![Build](https://img.shields.io/badge/build-passing-brightgreen)
+![Vite](https://img.shields.io/badge/Vite-⚡-646CFF?logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-38BDF8?logo=tailwindcss&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-deployed-00C7B7?logo=netlify&logoColor=white)
 
-**URL**: https://theflashroom.in
+**The Flash Room** is a modern photography & creative studio website built for performance, SEO, and visual storytelling.
 
-## How can I edit this code?
+🌐 **Live Website**: https://theflashroom.in
 
-There are several ways of editing your application.
+---
 
+## 🚀 About The Project
 
-**Use your preferred IDE**
+The Flash Room is a production-grade frontend application designed for a professional photography studio.  
+It focuses on fast load times, clean UI, SEO optimization, and scalability for future features like galleries, bookings, and client delivery.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠️ Tech Stack
 
-Follow these steps:
+- **Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Testing**: Vitest
+- **Linting**: ESLint
+- **Hosting**: Netlify
+- **SEO**: robots.txt, sitemap.xml, Open Graph images
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## ✨ Key Features
 
-# Step 3: Install the necessary dependencies.
-npm i
+- ⚡ Ultra-fast performance with Vite
+- 🎨 Modern, minimal UI for photography portfolios
+- 📱 Fully responsive (mobile-first)
+- 🖼️ Optimized asset handling
+- 🌐 SEO-ready (OG images, sitemap, robots)
+- 🔒 Production-ready configuration
+- 🚀 CI-friendly setup
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+---
+
+## 🖼️ Screenshots & Demo
+
+> Place screenshots or GIFs inside a `/screenshots` folder at the project root.
+
+```text
+screenshots/
+├── homepage.png
+├── portfolio.png
+├── mobile.png
+└── demo.gif
 ```
 
-**Edit a file directly in GitHub**
+![Homepage](./screenshots/homepage.png)
+![Demo](./screenshots/demo.gif)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+📂 Project Structure
+theflashroom/
+├── public/
+│ ├── \_headers
+│ ├── \_redirects
+│ ├── apple-touch-icon.png
+│ ├── favicon.ico
+│ ├── favicon.svg
+│ ├── favicon-16x16.png
+│ ├── favicon-32x32.png
+│ ├── og-image.png
+│ ├── og-image1.png
+│ ├── robots.txt
+│ ├── sitemap.xml
+│ └── llms.txt
+│
+├── src/
+│ ├── assets/
+│ ├── components/
+│ ├── hooks/
+│ ├── lib/
+│ ├── pages/
+│ ├── test/
+│ ├── App.tsx
+│ ├── main.tsx
+│ ├── App.css
+│ └── index.css
+│
+├── index.html
+├── netlify.toml
+├── vite.config.ts
+├── vitest.config.ts
+├── tailwind.config.ts
+├── eslint.config.js
+├── postcss.config.js
+├── tsconfig.json
+├── package.json
+└── README.md
 
-**Use GitHub Codespaces**
+⚙️ Getting Started
+1️⃣ Clone the repository
+git clone https://github.com/your-username/theflashroom.git
+cd theflashroom
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2️⃣ Install dependencies
+npm install
 
-## What technologies are used for this project?
+3️⃣ Run development server
+npm run dev
 
-This project is built with:
+Open:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+http://localhost:5173
 
-## How can I deploy this project?
+🏗️ Build for Production
+npm run build
 
-Simply open update code in github Netlify 
+Preview the production build:
+
+npm run preview
+
+🧪 Testing
+npm run test
+
+Powered by Vitest.
+
+🧹 Code Quality
+
+ESLint enforced
+
+Type-safe with TypeScript
+
+CI-ready for automated checks
+
+🌍 Deployment (Netlify)
+
+This project is configured for Netlify using:
+
+\_headers
+
+\_redirects
+
+netlify.toml
+
+Deployment steps:
+
+Push to main branch
+
+Netlify auto-builds
+
+Assets served from /public
+
+🔓 Open Source vs 🔒 Private Usage
+🔓 Open Source (if made public)
+
+Forking allowed
+
+Contributions welcome
+
+Attribution appreciated
+
+🔒 Private / Commercial (current use)
+
+All rights reserved
+
+No redistribution without permission
+
+Intended solely for The Flash Room
+
+🔮 Future Roadmap
+
+📅 Online booking system
+
+👤 Client login & private galleries
+
+📥 Digital photo delivery
+
+💳 Payment integration
+
+🤖 AI-assisted photo enhancement
+
+📄 License
+
+© 2026 The Flash Room
+All rights reserved.
+
+📬 Contact
+
+📧 Email: tfrstudio07@gmail.com
+
+🌐 Website: https://theflashroom.in
+
+✨ Capturing moments. Creating stories. ✨
