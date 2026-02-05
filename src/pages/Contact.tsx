@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Layout } from '@/components/layout/Layout';
@@ -91,8 +90,6 @@ export default function Contact() {
         window.open(whatsappUrl, '_blank');
       }
 
-      window.location.href = '/contact?success=1';
-
       setFormData({
         name: '',
         email: '',
@@ -141,22 +138,12 @@ export default function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Contact Wedding Photographer in Mumbai | The Flash Room Studio
-        </title>
-        <meta
-          name="description"
-          content="Contact The Flash Room Studio to book wedding, pre-wedding and event photography & videography. Based in Mumbai, available Pan-India & internationally."
-        />
-        <link rel="canonical" href="https://theflashroom.in/contact" />
-        <Seo
-          title="Contact Wedding Photographer in Mumbai | The Flash Room Studio"
-          description="Book wedding, pre-wedding, maternity, baby shower & event photography/videography. Mumbai-based studio serving Pan-India and destination weddings."
-          path="/contact"
-          image="https://theflashroom.in/og/og-contact.jpg"
-        />
-      </Helmet>
+      <Seo
+        title="Contact Wedding Photographer in Mumbai | The Flash Room Studio"
+        description="Book wedding, pre-wedding, maternity, baby shower & event photography/videography. Mumbai-based studio serving Pan-India and destination weddings."
+        path="/contact"
+        image="https://theflashroom.in/og/og-contact.jpg"
+      />
       <Layout>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">

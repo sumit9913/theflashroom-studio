@@ -97,8 +97,6 @@ export default function Book() {
           'Thank you! Our team will contact you within 24 hours to discuss your requirements.',
       });
 
-      window.location.href = '/booking?success=1';
-
       if (typeof window !== 'undefined') {
         window.open(whatsappUrl, '_blank');
       }
