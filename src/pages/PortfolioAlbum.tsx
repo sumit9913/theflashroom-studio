@@ -14,6 +14,7 @@ import phera from '@/assets/phera.jpg';
 import prewedding from '@/assets/prewedding.jpg';
 import sangeet from '@/assets/sangeet.jpg';
 import { Layout } from '@/components/layout/Layout';
+import { Seo } from '@/components/seo/Seo';
 import { Button } from '@/components/ui/button';
 
 /**
@@ -315,6 +316,14 @@ export default function PortfolioAlbum() {
             </motion.div>
           </div>
         </section>
+
+        <Seo
+          title={`${album.title} | ${album.category} Photography in ${album.location} | The Flash Room Studio`}
+          description={`${album.title} — ${album.category.toLowerCase()} photography & videography by The Flash Room Studio (Mumbai). Available Pan-India & destination weddings. Location: ${album.location}.`}
+          path={`/portfolio/${album.id}`}
+          image="https://theflashroom.in/og/og-portfolio.jpg"
+          jsonLd={jsonLd}
+        />
 
         {/* Lightbox */}
         <AnimatePresence>
