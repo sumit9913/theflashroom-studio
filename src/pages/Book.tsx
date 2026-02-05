@@ -81,7 +81,7 @@ export default function Book() {
         eventType: eventTypeName,
       }).toString();
 
-      const response = await fetch('/', {
+      const response = await fetch('/booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formBody,
@@ -96,6 +96,8 @@ export default function Book() {
         description:
           'Thank you! Our team will contact you within 24 hours to discuss your requirements.',
       });
+
+      window.location.href = '/booking?success=1';
 
       if (typeof window !== 'undefined') {
         window.open(whatsappUrl, '_blank');
@@ -240,6 +242,7 @@ export default function Book() {
               <form
                 name="booking"
                 method="POST"
+                action="/booking"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}>
