@@ -1,61 +1,61 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
-import { Layout } from "@/components/layout/Layout";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { Helmet } from "react-helmet-async";
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
-import heroWedding from "@/assets/hero-wedding.jpg";
+import heroWedding from '@/assets/hero-wedding.jpg';
+import { Layout } from '@/components/layout/Layout';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const contactInfo = [
   {
     icon: Phone,
-    title: "Phone",
-    details: ["+91 99673 99913", "+91 91366 98930"],
-    subtitle: "Mon-Sat, 10am-7pm",
+    title: 'Phone',
+    details: ['+91 99673 99913', '+91 91366 98930'],
+    subtitle: 'Mon-Sat, 10am-7pm',
   },
   {
     icon: Mail,
-    title: "Email",
-    details: ["tfrstudio07@gmail.com", "sumit.m992@gmail.com"],
-    subtitle: "We reply within 24 hours",
+    title: 'Email',
+    details: ['tfrstudio07@gmail.com', 'sumit.m992@gmail.com'],
+    subtitle: 'We reply within 24 hours',
   },
   {
     icon: MapPin,
-    title: "Location",
-    details: ["Mumbai, Maharashtra"],
-    subtitle: "Available Pan-India & Internationally",
+    title: 'Location',
+    details: ['Mumbai, Maharashtra'],
+    subtitle: 'Available Pan-India & Internationally',
   },
   {
     icon: Clock,
-    title: "Business Hours",
-    details: ["Mon-Sat: 10:00 AM - 7:00 PM"],
-    subtitle: "Sunday by appointment only",
+    title: 'Business Hours',
+    details: ['Mon-Sat: 10:00 AM - 7:00 PM'],
+    subtitle: 'Sunday by appointment only',
   },
 ];
 
 const eventTypes = [
-  "Wedding",
-  "Pre-Wedding",
-  "Baby Shower",
-  "Maternity",
-  "Birthday",
-  "Corporate Event",
-  "Other",
+  'Wedding',
+  'Pre-Wedding',
+  'Baby Shower',
+  'Maternity',
+  'Birthday',
+  'Corporate Event',
+  'Other',
 ];
 
 export default function Contact() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    eventType: "",
-    eventDate: "",
-    message: "",
+    name: '',
+    email: '',
+    phone: '',
+    eventType: '',
+    eventDate: '',
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -65,43 +65,44 @@ export default function Contact() {
 
     try {
       const formBody = new URLSearchParams({
-        "form-name": "contact",
-        "bot-field": "",
+        'form-name': 'contact',
+        'bot-field': '',
         ...formData,
       }).toString();
 
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formBody,
       });
 
       if (!response.ok) {
-        throw new Error("Netlify form submission failed");
+        throw new Error('Netlify form submission failed');
       }
 
       toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. We'll get back to you within 24 hours.",
+        title: 'Message Sent!',
+        description:
+          "Thank you for reaching out. We'll get back to you within 24 hours.",
       });
 
-      if (typeof window !== "undefined") {
-        window.open(whatsappUrl, "_blank");
+      if (typeof window !== 'undefined') {
+        window.open(whatsappUrl, '_blank');
       }
 
       setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        eventType: "",
-        eventDate: "",
-        message: "",
+        name: '',
+        email: '',
+        phone: '',
+        eventType: '',
+        eventDate: '',
+        message: '',
       });
-    } catch (error) {
+    } catch {
       toast({
-        title: "Message Failed",
-        description: "Please try again in a moment or reach out via WhatsApp.",
-        variant: "destructive",
+        title: 'Message Failed',
+        description: 'Please try again in a moment or reach out via WhatsApp.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
@@ -109,7 +110,9 @@ export default function Contact() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     setFormData({
       ...formData,
@@ -127,16 +130,18 @@ export default function Contact() {
     formData.message && `Message: ${formData.message}`,
   ]
     .filter(Boolean)
-    .join("\n");
+    .join('\n');
 
   const whatsappUrl = `https://wa.me/919136698930?text=${encodeURIComponent(
-    whatsappMessage
+    whatsappMessage,
   )}`;
 
   return (
     <>
       <Helmet>
-        <title>Contact Wedding Photographer in Mumbai | The Flash Room Studio</title>
+        <title>
+          Contact Wedding Photographer in Mumbai | The Flash Room Studio
+        </title>
         <meta
           name="description"
           content="Contact The Flash Room Studio to book wedding, pre-wedding and event photography & videography. Based in Mumbai, available Pan-India & internationally."
@@ -160,9 +165,10 @@ export default function Contact() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto text-center"
-            >
-              <span className="text-gold font-elegant text-lg tracking-widest uppercase">Contact Us</span>
+              className="max-w-3xl mx-auto text-center">
+              <span className="text-gold font-elegant text-lg tracking-widest uppercase">
+                Contact Us
+              </span>
               <h1 className="font-display text-4xl md:text-6xl font-bold mt-4 mb-6">
                 Let's <span className="text-gold-gradient">Connect</span>
               </h1>
@@ -183,8 +189,7 @@ export default function Contact() {
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
+                transition={{ duration: 0.6 }}>
                 <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
                   Send Us a Message
                 </h2>
@@ -195,12 +200,12 @@ export default function Contact() {
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
-                  className="space-y-6"
-                >
+                  className="space-y-6">
                   <input type="hidden" name="form-name" value="contact" />
                   <p className="hidden">
                     <label>
-                      Don’t fill this out if you’re human: <input name="bot-field" />
+                      Don’t fill this out if you’re human:{' '}
+                      <input name="bot-field" />
                     </label>
                   </p>
                   <div className="grid sm:grid-cols-2 gap-6">
@@ -259,8 +264,7 @@ export default function Contact() {
                         value={formData.eventType}
                         onChange={handleChange}
                         required
-                        className="w-full h-10 px-3 rounded-md bg-card border border-border text-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold"
-                      >
+                        className="w-full h-10 px-3 rounded-md bg-card border border-border text-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold">
                         <option value="">Select event type</option>
                         {eventTypes.map((type) => (
                           <option key={type} value={type}>
@@ -303,10 +307,9 @@ export default function Contact() {
                     variant="gold"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto"
-                  >
+                    className="w-full sm:w-auto">
                     {isSubmitting ? (
-                      "Sending..."
+                      'Sending...'
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
@@ -322,9 +325,13 @@ export default function Contact() {
                     Prefer WhatsApp?
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    Get quick responses via WhatsApp. We typically reply within minutes!
+                    Get quick responses via WhatsApp. We typically reply within
+                    minutes!
                   </p>
-                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer">
                     <Button variant="gold-outline" className="gap-2">
                       <MessageCircle className="w-5 h-5" />
                       Quick Enquiry on WhatsApp
@@ -338,8 +345,7 @@ export default function Contact() {
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
+                transition={{ duration: 0.6 }}>
                 <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">
                   Get in Touch
                 </h2>
@@ -348,8 +354,7 @@ export default function Contact() {
                   {contactInfo.map((info) => (
                     <div
                       key={info.title}
-                      className="flex gap-4 p-4 bg-card rounded-lg border border-border hover:border-gold/30 transition-colors"
-                    >
+                      className="flex gap-4 p-4 bg-card rounded-lg border border-border hover:border-gold/30 transition-colors">
                       <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0">
                         <info.icon className="w-6 h-6 text-gold" />
                       </div>
@@ -358,11 +363,15 @@ export default function Contact() {
                           {info.title}
                         </h4>
                         {info.details.map((detail) => (
-                          <p key={detail} className="text-foreground/80 text-sm">
+                          <p
+                            key={detail}
+                            className="text-foreground/80 text-sm">
                             {detail}
                           </p>
                         ))}
-                        <p className="text-muted-foreground text-xs mt-1">{info.subtitle}</p>
+                        <p className="text-muted-foreground text-xs mt-1">
+                          {info.subtitle}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -374,19 +383,25 @@ export default function Contact() {
                     Service Areas
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
-                    Based in Mumbai, we cover events across India and internationally.
+                    Based in Mumbai, we cover events across India and
+                    internationally.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {["Mumbai", "Delhi", "Bangalore", "Jaipur", "Udaipur", "Goa", "International"].map(
-                      (city) => (
-                        <span
-                          key={city}
-                          className="px-3 py-1 bg-background rounded-full text-sm text-foreground/80"
-                        >
-                          {city}
-                        </span>
-                      )
-                    )}
+                    {[
+                      'Mumbai',
+                      'Delhi',
+                      'Bangalore',
+                      'Jaipur',
+                      'Udaipur',
+                      'Goa',
+                      'International',
+                    ].map((city) => (
+                      <span
+                        key={city}
+                        className="px-3 py-1 bg-background rounded-full text-sm text-foreground/80">
+                        {city}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </motion.div>

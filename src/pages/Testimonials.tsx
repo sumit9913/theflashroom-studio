@@ -1,69 +1,69 @@
-import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-import { Layout } from "@/components/layout/Layout";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { motion } from 'framer-motion';
+import { Star, Quote } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
-import heroWedding from "@/assets/hero-wedding.jpg";
+import heroWedding from '@/assets/hero-wedding.jpg';
+import { Layout } from '@/components/layout/Layout';
+import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
-    name: "Priya & Rahul Sharma",
-    event: "Wedding",
-    location: "Udaipur",
+    name: 'Priya & Rahul Sharma',
+    event: 'Wedding',
+    location: 'Udaipur',
     rating: 5,
     text: "TheFlashRoom captured every emotion of our 3-day wedding celebration beautifully. From the emotional haldi ceremony to the grand reception, every moment was preserved perfectly. The team was professional, unobtrusive, and incredibly creative. We couldn't have asked for better photographers!",
     image: heroWedding,
   },
   {
-    name: "Sneha & Amit Kapoor",
-    event: "Pre-Wedding",
-    location: "Jaipur",
+    name: 'Sneha & Amit Kapoor',
+    event: 'Pre-Wedding',
+    location: 'Jaipur',
     rating: 5,
     text: "Our pre-wedding shoot was absolutely magical! The team understood our vision perfectly and suggested the most beautiful locations. The photos look like they're straight out of a magazine. Highly recommend for anyone looking for creative pre-wedding photography.",
   },
   {
-    name: "Kavita Mehta",
-    event: "Baby Shower",
-    location: "Mumbai",
+    name: 'Kavita Mehta',
+    event: 'Baby Shower',
+    location: 'Mumbai',
     rating: 5,
-    text: "The team made everyone feel so comfortable during our Godh Bharai ceremony. They captured beautiful candid moments of all our family members and the traditional rituals. The photos are absolutely stunning and we will treasure them forever.",
+    text: 'The team made everyone feel so comfortable during our Godh Bharai ceremony. They captured beautiful candid moments of all our family members and the traditional rituals. The photos are absolutely stunning and we will treasure them forever.',
   },
   {
-    name: "Vikram & Anjali Patel",
-    event: "Destination Wedding",
-    location: "Goa",
+    name: 'Vikram & Anjali Patel',
+    event: 'Destination Wedding',
+    location: 'Goa',
     rating: 5,
-    text: "We hired TheFlashRoom for our destination wedding in Goa, and they exceeded all our expectations. The cinematic wedding film they created tells our love story so beautifully. Every frame is a work of art. Worth every penny!",
+    text: 'We hired TheFlashRoom for our destination wedding in Goa, and they exceeded all our expectations. The cinematic wedding film they created tells our love story so beautifully. Every frame is a work of art. Worth every penny!',
   },
   {
-    name: "Neha Singh",
-    event: "Maternity Shoot",
-    location: "Delhi",
+    name: 'Neha Singh',
+    event: 'Maternity Shoot',
+    location: 'Delhi',
     rating: 5,
-    text: "The maternity shoot experience was so comfortable and relaxed. The photographer had great ideas and made me feel beautiful throughout. The photos perfectly capture this special time in our lives. Absolutely loved working with this team!",
+    text: 'The maternity shoot experience was so comfortable and relaxed. The photographer had great ideas and made me feel beautiful throughout. The photos perfectly capture this special time in our lives. Absolutely loved working with this team!',
   },
   {
-    name: "Rohit & Pooja Verma",
-    event: "Wedding",
-    location: "Jaipur",
+    name: 'Rohit & Pooja Verma',
+    event: 'Wedding',
+    location: 'Jaipur',
     rating: 5,
-    text: "From the first meeting to the final delivery, the entire experience was seamless. They captured the essence of our Rajasthani wedding beautifully - the colors, the rituals, the emotions. Our families were so impressed with the photos and video.",
+    text: 'From the first meeting to the final delivery, the entire experience was seamless. They captured the essence of our Rajasthani wedding beautifully - the colors, the rituals, the emotions. Our families were so impressed with the photos and video.',
   },
   {
-    name: "Sanjay Gupta",
-    event: "50th Birthday",
-    location: "Mumbai",
+    name: 'Sanjay Gupta',
+    event: '50th Birthday',
+    location: 'Mumbai',
     rating: 5,
     text: "We booked TheFlashRoom for my father's 50th birthday celebration. The team was punctual, professional, and captured all the special moments with our extended family. The highlight video brought tears to everyone's eyes. Excellent work!",
   },
   {
-    name: "Meera & Arjun Reddy",
-    event: "Wedding",
-    location: "Hyderabad",
+    name: 'Meera & Arjun Reddy',
+    event: 'Wedding',
+    location: 'Hyderabad',
     rating: 5,
-    text: "The attention to detail and dedication shown by TheFlashRoom team is unmatched. They captured our South Indian wedding traditions with such respect and artistry. The drone shots of our mandap are breathtaking. Truly the best decision we made!",
+    text: 'The attention to detail and dedication shown by TheFlashRoom team is unmatched. They captured our South Indian wedding traditions with such respect and artistry. The drone shots of our mandap are breathtaking. Truly the best decision we made!',
   },
 ];
 
@@ -95,9 +95,10 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto text-center"
-            >
-              <span className="text-gold font-elegant text-lg tracking-widest uppercase">Testimonials</span>
+              className="max-w-3xl mx-auto text-center">
+              <span className="text-gold font-elegant text-lg tracking-widest uppercase">
+                Testimonials
+              </span>
               <h1 className="font-display text-4xl md:text-6xl font-bold mt-4 mb-6">
                 What Our <span className="text-gold-gradient">Clients Say</span>
               </h1>
@@ -120,8 +121,7 @@ export default function Testimonials() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="bg-card rounded-xl p-8 border border-border hover:border-gold/30 transition-all duration-300 group"
-                >
+                  className="bg-card rounded-xl p-8 border border-border hover:border-gold/30 transition-all duration-300 group">
                   <Quote className="w-10 h-10 text-gold/20 mb-4" />
 
                   <div className="flex gap-1 mb-4">
@@ -160,22 +160,23 @@ export default function Testimonials() {
           <div className="container-custom">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
-                { number: "500+", label: "Weddings Captured" },
-                { number: "100%", label: "Client Satisfaction" },
-                { number: "5.0", label: "Average Rating" },
-                { number: "1000+", label: "Happy Families" },
+                { number: '500+', label: 'Weddings Captured' },
+                { number: '100%', label: 'Client Satisfaction' },
+                { number: '5.0', label: 'Average Rating' },
+                { number: '1000+', label: 'Happy Families' },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
+                  transition={{ delay: index * 0.1 }}>
                   <div className="font-display text-4xl md:text-5xl font-bold text-gold-gradient mb-2">
                     {stat.number}
                   </div>
-                  <div className="text-muted-foreground text-sm">{stat.label}</div>
+                  <div className="text-muted-foreground text-sm">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -189,10 +190,10 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+              transition={{ duration: 0.6 }}>
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-                Ready to Create Your <span className="text-gold-gradient">Story</span>?
+                Ready to Create Your{' '}
+                <span className="text-gold-gradient">Story</span>?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
                 Join our family of happy clients. Let us capture the moments

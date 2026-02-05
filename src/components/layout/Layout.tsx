@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
-import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
-import { WhatsAppButton } from "./WhatsAppButton";
+import { ReactNode } from 'react';
+
+import { Footer } from './Footer';
+import { Navbar } from './Navbar';
+import { WhatsAppButton } from './WhatsAppButton';
 
 interface LayoutProps {
   children: ReactNode;

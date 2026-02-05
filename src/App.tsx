@@ -1,22 +1,24 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ScrollToTop } from "@/components/layout/ScrollToTop";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Portfolio from "./pages/Portfolio";
-import Packages from "./pages/Packages";
-import Testimonials from "./pages/Testimonials";
-import Contact from "./pages/Contact";
-import Book from "./pages/Book";
-import PortfolioAlbum from "./pages/PortfolioAlbum";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import LLMs from "./pages/LLMs";
-import NotFound from "./pages/NotFound";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import About from './pages/About';
+import Book from './pages/Book';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import LLMs from './pages/LLMs';
+import NotFound from './pages/NotFound';
+import Packages from './pages/Packages';
+import Portfolio from './pages/Portfolio';
+import PortfolioAlbum from './pages/PortfolioAlbum';
+import Privacy from './pages/Privacy';
+import Services from './pages/Services';
+import Terms from './pages/Terms';
+import Testimonials from './pages/Testimonials';
+
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { Toaster } from '@/components/ui/toaster';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const queryClient = new QueryClient();
 
