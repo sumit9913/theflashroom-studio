@@ -43,12 +43,12 @@ export default function Book() {
 	});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const unused = 123;
-	console.log('should fail');
-
 	const handleEventSelect = (eventId: string) => {
 		setFormData({ ...formData, eventType: eventId });
 	};
+
+	const unused = 123;
+	console.log('should fail');
 
 	const handleChange = (
 		e: React.ChangeEvent<
