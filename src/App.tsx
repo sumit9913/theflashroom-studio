@@ -22,7 +22,9 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { GA_MEASUREMENT_ID } from '@/seo/googleAnalytics';
 import { localBusinessJsonLd } from '@/seo/localBusinessJsonLd';
+import { usePageTracking } from '@/seo/usePageTracking';
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,11 @@ const App = () => {
     return () => window.clearTimeout(t);
   }, []);
 
+  const TrackPage = () => {
+    usePageTracking();
+    return null;
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -56,12 +63,33 @@ const App = () => {
             <Sonner />
 
             <BrowserRouter>
+              <TrackPage />
+
               <ScrollToTop />
               <Helmet>
+                {/* LocalBusiness JSON-LD */}
                 <script type="application/ld+json">
                   {JSON.stringify(localBusinessJsonLd)}
                 </script>
+
+                {/* Google Analytics (GA4) */}
+                <script
+                  async
+                  src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+                />
+                <script>
+                  {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    window.gtag = gtag;
+                    gtag('js', new Date());
+                    gtag('config', '${GA_MEASUREMENT_ID}', {
+                      page_path: window.location.pathname,
+                    });
+                  `}
+                </script>
               </Helmet>
+
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
