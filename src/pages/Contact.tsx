@@ -4,11 +4,12 @@ import { useState } from 'react';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Layout } from '@/components/layout/Layout';
-import { Seo } from '@/components/seo/Seo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { toTelHref, toMailHref, toMapsHref } from '@/lib/contactLinks';
+import { Seo } from '@/seo/Seo';
 
 const contactInfo = [
   {
@@ -16,24 +17,28 @@ const contactInfo = [
     title: 'Phone',
     details: ['+91 99673 99913', '+91 91366 98930'],
     subtitle: 'Mon-Sat, 10am-7pm',
+    type: 'phone' as const,
   },
   {
     icon: Mail,
     title: 'Email',
     details: ['tfrstudio07@gmail.com', 'sumit.m992@gmail.com'],
     subtitle: 'We reply within 24 hours',
+    type: 'email' as const,
   },
   {
     icon: MapPin,
     title: 'Location',
     details: ['Mumbai, Maharashtra'],
     subtitle: 'Available Pan-India & Internationally',
+    type: 'map' as const,
   },
   {
     icon: Clock,
     title: 'Business Hours',
     details: ['Mon-Sat: 10:00 AM - 7:00 PM'],
     subtitle: 'Sunday by appointment only',
+    type: 'text' as const,
   },
 ];
 
@@ -359,13 +364,40 @@ export default function Contact() {
                         <h4 className="font-display font-semibold text-foreground mb-1">
                           {info.title}
                         </h4>
-                        {info.details.map((detail) => (
-                          <p
-                            key={detail}
-                            className="text-foreground/80 text-sm">
-                            {detail}
-                          </p>
-                        ))}
+                        {info.details.map((detail) => {
+                          const href =
+                            info.type === 'phone'
+                              ? toTelHref(detail)
+                              : info.type === 'email'
+                                ? toMailHref(detail)
+                                : info.type === 'map'
+                                  ? toMapsHref('The Flash Room Studio, Mumbai')
+                                  : null;
+
+                          return href ? (
+                            <a
+                              key={detail}
+                              href={href}
+                              target={
+                                info.type === 'map' ? '_blank' : undefined
+                              }
+                              rel={
+                                info.type === 'map'
+                                  ? 'noopener noreferrer'
+                                  : undefined
+                              }
+                              className="text-foreground/80 text-sm hover:text-gold transition-colors underline-offset-4 hover:underline">
+                              {detail}
+                            </a>
+                          ) : (
+                            <p
+                              key={detail}
+                              className="text-foreground/80 text-sm">
+                              {detail}
+                            </p>
+                          );
+                        })}
+
                         <p className="text-muted-foreground text-xs mt-1">
                           {info.subtitle}
                         </p>

@@ -14,8 +14,8 @@ import phera from '@/assets/phera.jpg';
 import prewedding from '@/assets/prewedding.jpg';
 import sangeet from '@/assets/sangeet.jpg';
 import { Layout } from '@/components/layout/Layout';
-import { Seo } from '@/components/seo/Seo';
 import { Button } from '@/components/ui/button';
+import { Seo } from '@/seo/Seo';
 
 /**
  * ✅ Reuse your albums data here (same as in Portfolio.tsx)

@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import About from './pages/About';
@@ -19,6 +20,7 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { localBusinessJsonLd } from '@/seo/localBusinessJsonLd';
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,11 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(localBusinessJsonLd)}
+          </script>
+        </Helmet>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

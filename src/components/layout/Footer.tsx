@@ -117,35 +117,60 @@ export function Footer() {
             <h4 className="font-display text-lg text-foreground mb-6">
               Contact Us
             </h4>
+
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-gold mt-0.5" />
-                <div>
-                  <p className="text-sm text-foreground">+91 91366 98930</p>
-                  <p className="text-xs text-muted-foreground">
-                    Mon-Sat, 10am-7pm
-                  </p>
-                </div>
+              {/* Phone */}
+              <li>
+                <a
+                  href="tel:+919136698930"
+                  className="flex items-start gap-3 hover:text-gold transition-colors">
+                  <Phone className="w-5 h-5 text-gold mt-0.5" />
+                  <div>
+                    <p className="text-sm text-foreground">+91 91366 98930</p>
+                    <p className="text-xs text-muted-foreground">
+                      Mon–Sat, 10am–7pm
+                    </p>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-gold mt-0.5" />
-                <div>
-                  <p className="text-sm text-foreground">
-                    tfrstudio07@gmail.com
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    We reply within 24hrs
-                  </p>
-                </div>
+
+              {/* Email */}
+              <li>
+                <a
+                  href="mailto:tfrstudio07@gmail.com"
+                  className="flex items-start gap-3 hover:text-gold transition-colors">
+                  <Mail className="w-5 h-5 text-gold mt-0.5" />
+                  <div>
+                    <p className="text-sm text-foreground">
+                      tfrstudio07@gmail.com
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      We reply within 24 hrs
+                    </p>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold mt-0.5" />
-                <div>
-                  <p className="text-sm text-foreground">Mumbai, India</p>
-                  <p className="text-xs text-muted-foreground">
-                    Available Pan-India
-                  </p>
-                </div>
+
+              {/* Location */}
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=The+Flash+Room+Studio+Mumbai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 hover:text-gold transition-colors">
+                  <MapPin className="w-5 h-5 text-gold mt-0.5" />
+                  <div>
+                    <p className="text-sm text-foreground">Mumbai, India</p>
+                    <p className="text-xs text-muted-foreground">
+                      Available Pan-India
+                    </p>
+                  </div>
+                </a>
+                <p className="sr-only">
+                  The Flash Room Studio is a professional wedding photography
+                  and videography studio based in Mumbai, serving clients across
+                  India and internationally.
+                </p>
               </li>
             </ul>
           </div>
