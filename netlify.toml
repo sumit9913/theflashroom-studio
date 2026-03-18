@@ -1,24 +1,30 @@
 [build]
   command = "npm run build"
-  publish = "dist"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Cache Next.js static assets aggressively
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*"
+  for = "/sounds/*"
   [headers.values]
-    # HSTS (safe because you're on HTTPS)
-    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Cache-Control = "public, max-age=86400"
 
-    # Basic hardening
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
-    # CSP - start safe; loosen ONLY if something breaks
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; font-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-
-# SPA fallback so /portfolio/albumId works on refresh
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"

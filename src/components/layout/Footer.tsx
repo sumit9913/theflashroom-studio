@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Camera,
   Instagram,
@@ -7,7 +9,7 @@ import {
   Phone,
   MapPin,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const footerLinks = {
   services: [
@@ -34,7 +36,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+            <Link href="/" className="flex items-center gap-3 mb-6">
               <Camera className="w-8 h-8 text-gold" />
               <div className="flex flex-col">
                 <span className="font-display text-xl font-semibold text-gold-gradient">
@@ -85,7 +87,7 @@ export function Footer() {
               {footerLinks.services.map((link) => (
                 <li key={link.path}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-muted-foreground text-sm hover:text-gold transition-colors duration-300">
                     {link.name}
                   </Link>
@@ -103,7 +105,7 @@ export function Footer() {
               {footerLinks.company.map((link) => (
                 <li key={link.path}>
                   <Link
-                    to={link.path}
+                    href={link.path}
                     className="text-muted-foreground text-sm hover:text-gold transition-colors duration-300">
                     {link.name}
                   </Link>
@@ -185,13 +187,13 @@ export function Footer() {
             reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link to="/privacy" className="hover:text-gold transition-colors">
+            <Link href="/privacy" className="hover:text-gold transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="hover:text-gold transition-colors">
+            <Link href="/terms" className="hover:text-gold transition-colors">
               Terms of Service
             </Link>
-            <Link to="/llms" className="hover:text-gold transition-colors">
+            <Link href="/llms" className="hover:text-gold transition-colors">
               For LLMs
             </Link>
           </div>

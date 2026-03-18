@@ -8,9 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
-*.local
+
+# Next.js
+.next/
+out/
 
 # Editor directories and files
 .vscode/*
@@ -23,6 +24,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env*.local
 package-lock.json
+
 # Local Netlify folder
 .netlify
+.claude

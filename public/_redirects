@@ -1,4 +1,4 @@
+# Force HTTPS and canonical domain — Next.js handles routing natively
 http://theflashroom.in/*   https://theflashroom.in/:splat   301!
 http://www.theflashroom.in/* https://theflashroom.in/:splat 301!
 https://www.theflashroom.in/* https://theflashroom.in/:splat 301!
-/* /index.html 200

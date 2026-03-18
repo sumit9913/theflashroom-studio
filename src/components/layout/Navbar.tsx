@@ -1,7 +1,10 @@
+'use client';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Camera } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 
@@ -18,7 +21,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +33,7 @@ export function Navbar() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <>
@@ -43,7 +46,7 @@ export function Navbar() {
         }`}>
         <div className="container-custom flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="relative">
               <Camera className="w-8 h-8 text-gold transition-transform duration-300 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -63,14 +66,14 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-                  location.pathname === link.path
+                  pathname === link.path
                     ? 'text-gold'
                     : 'text-foreground/80 hover:text-gold'
                 }`}>
                 {link.name}
-                {location.pathname === link.path && (
+                {pathname === link.path && (
                   <motion.div
                     layoutId="navbar-indicator"
                     className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-gold-dark via-gold to-gold-light"
@@ -83,7 +86,7 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Link to="/book">
+            <Link href="/book">
               <Button variant="gold" size="default">
                 Book a Shoot
               </Button>
@@ -122,9 +125,9 @@ export function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}>
                     <Link
-                      to={link.path}
+                      href={link.path}
                       className={`text-2xl font-display transition-colors duration-300 ${
-                        location.pathname === link.path
+                        pathname === link.path
                           ? 'text-gold'
                           : 'text-foreground hover:text-gold'
                       }`}>
@@ -137,7 +140,7 @@ export function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: navLinks.length * 0.1 }}
                   className="mt-4">
-                  <Link to="/book">
+                  <Link href="/book">
                     <Button variant="gold" size="xl">
                       Book a Shoot
                     </Button>

@@ -1,5 +1,7 @@
+'use client';
+
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { GA_MEASUREMENT_ID } from './googleAnalytics';
 
@@ -19,13 +21,15 @@ declare global {
 }
 
 export function usePageTracking() {
-  const location = useLocation();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!window.gtag) return;
 
+    const search = searchParams?.toString();
     window.gtag('config', GA_MEASUREMENT_ID, {
-      page_path: location.pathname + location.search,
+      page_path: pathname + (search ? `?${search}` : ''),
     });
-  }, [location]);
+  }, [pathname, searchParams]);
 }
