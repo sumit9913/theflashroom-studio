@@ -19,7 +19,7 @@ const jsonLd = {
       name: 'How much does wedding photography cost in Mumbai?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Wedding photography packages start from ₹75,000 for essential coverage and go up to ₹3,00,000 for full premium documentation including multi-day coverage and drone cinematography.',
+        text: 'Wedding photography costs vary based on coverage duration, number of photographers, videographers, and add-ons like drone and albums. Use our Package Calculator at theflashroom.in/calculator for an instant estimate.',
       },
     },
     {
@@ -40,24 +40,24 @@ const jsonLd = {
     },
     {
       '@type': 'Question',
-      name: 'What is the starting price for a pre-wedding shoot?',
+      name: 'How can I get a price estimate for a pre-wedding shoot?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pre-wedding shoot packages start from ₹25,000 and include location scouting, styling guidance, and professionally edited high-resolution photos.',
+        text: 'Pre-wedding shoot packages include location scouting, styling guidance, and professionally edited high-resolution photos. Visit our Package Calculator at theflashroom.in/calculator for an instant personalised estimate.',
       },
     },
   ],
 };
 
 export const metadata: Metadata = {
-  title: 'Photography Packages & Pricing — Weddings from ₹75,000',
+  title: 'Photography Packages — Wedding, Pre-Wedding & Events',
   description:
-    'Transparent wedding photography pricing in Mumbai. Packages starting from ₹75,000 for weddings, ₹25,000 for pre-weddings, ₹15,000 for events. All inclusive. No hidden costs.',
+    'Explore photography and videography packages by The Flash Room Studio in Mumbai. Choose from Cost-Effective, Intermediate, and Premium coverage for weddings, pre-weddings, events and more.',
   alternates: { canonical: 'https://theflashroom.in/packages' },
   openGraph: {
-    title: 'Photography Packages & Pricing | The Flash Room Studio',
+    title: 'Photography Packages | The Flash Room Studio',
     description:
-      'Transparent pricing for every celebration. Wedding packages from ₹75,000.',
+      'Flexible packages for every celebration — weddings, pre-weddings, baby showers, birthdays and events. Mumbai-based, Pan-India coverage.',
     url: 'https://theflashroom.in/packages',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

@@ -56,7 +56,7 @@ const jsonLd = {
 export const metadata: Metadata = {
   title: 'Photography & Videography Services in Mumbai',
   description:
-    'Wedding, pre-wedding, maternity, baby shower, birthday and corporate event photography & videography in Mumbai. Starting from ₹10,000. Available Pan-India & internationally.',
+    'Wedding, pre-wedding, maternity, baby shower, birthday and corporate event photography & videography in Mumbai. Available Pan-India & internationally. Use our calculator for instant estimates.',
   alternates: { canonical: 'https://theflashroom.in/services' },
   openGraph: {
     title: 'Photography & Videography Services in Mumbai | The Flash Room Studio',

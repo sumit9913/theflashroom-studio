@@ -20,11 +20,13 @@ const securityHeaders = [
       "img-src 'self' data: https: blob:",
       "font-src 'self' data: https://fonts.gstatic.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      // GA4 requires 'unsafe-inline' for gtag initialization
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
-      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com",
+      // GA4 + Firebase reCAPTCHA + Google APIs
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ https://apis.google.com",
+      // Firebase Auth + GA4 connect sources
+      "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://apis.google.com https://www.google.com",
       "media-src 'self'",
-      "frame-src https://www.youtube.com https://player.vimeo.com",
+      // reCAPTCHA needs to frame google.com
+      "frame-src https://www.youtube.com https://player.vimeo.com https://tfr-studio-app.firebaseapp.com https://www.google.com https://accounts.google.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

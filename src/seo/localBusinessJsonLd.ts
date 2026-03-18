@@ -92,4 +92,11 @@ export const localBusinessJsonLd = {
     'Baby Shower Photography',
     'Birthday Photography',
   ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    bestRating: '5',
+    worstRating: '1',
+    ratingCount: '25',
+  },
 };

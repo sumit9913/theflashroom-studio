@@ -374,9 +374,9 @@ export default function Packages() {
                         {plan.name} {selectedPackage.service.toLowerCase()}{' '}
                         package in Mumbai
                       </p>
-                      <div className="flex items-baseline justify-center gap-1 mb-3">
-                        <span className="font-display text-4xl font-bold text-gold-gradient">
-                          {plan.price}
+                      <div className="mb-3">
+                        <span className="inline-block text-xs font-semibold text-gold bg-gold/10 px-3 py-1 rounded-full uppercase tracking-widest">
+                          Custom Pricing
                         </span>
                       </div>
                       <p className="text-sm text-muted-foreground">

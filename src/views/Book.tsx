@@ -426,13 +426,11 @@ export default function Book() {
                           onChange={handleChange}
                           className="w-full h-10 px-3 rounded-md bg-background border border-border text-foreground focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold">
                           <option value="">Select budget</option>
-                          <option value="25000">Up to ₹25,000</option>
-                          <option value="50000">₹25,000 - ₹50,000</option>
-                          <option value="100000">₹50,000 - ₹1,00,000</option>
-                          <option value="200000">
-                            ₹1,00,000 - ₹2,00,000
-                          </option>
-                          <option value="300000">₹2,00,000+</option>
+                          <option value="basic">Basic</option>
+                          <option value="standard">Standard</option>
+                          <option value="premium">Premium</option>
+                          <option value="luxury">Luxury</option>
+                          <option value="custom">Custom / Flexible</option>
                         </select>
                       </div>
                     </div>

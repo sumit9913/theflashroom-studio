@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | The Flash Room Studio',
   description: 'Privacy policy for The Flash Room Studio website.',
   alternates: { canonical: 'https://theflashroom.in/privacy' },
-  robots: { index: false },
+  robots: { index: false, follow: false },
 };
 
 export default function PrivacyPage() {
