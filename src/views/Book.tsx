@@ -225,20 +225,7 @@ export default function Book() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="bg-card rounded-xl p-8 md:p-12 border border-border">
-            <form
-              name="booking"
-              method="POST"
-              action="/booking"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}>
-              <input type="hidden" name="form-name" value="booking" />
-              <p className="hidden">
-                <label>
-                  Don't fill this out if you're human:{' '}
-                  <input name="bot-field" />
-                </label>
-              </p>
+            <form onSubmit={handleSubmit}>
               {/* Step 1: Event Type */}
               {currentStep === 1 && (
                 <div>
