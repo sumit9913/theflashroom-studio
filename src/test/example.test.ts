@@ -24,7 +24,9 @@ describe('sitemap', () => {
 
   it('all entries have a valid lastModified date', () => {
     for (const entry of entries) {
-      expect(new Date(entry.lastModified as string).toString()).not.toBe('Invalid Date');
+      expect(new Date(entry.lastModified as string).toString()).not.toBe(
+        'Invalid Date',
+      );
     }
   });
 
@@ -37,20 +39,23 @@ describe('sitemap', () => {
 // ─── Calculator pricing ───────────────────────────────────────────────────────
 // Mirror of the SERVICES array — keeps tests independent of the component
 const SERVICES = [
-  { id: 'candid_photographer',    price: 15000, max: 5  },
-  { id: 'traditional_photographer', price: 8000, max: 5  },
-  { id: 'videographer',           price: 10000, max: 5  },
-  { id: 'cinematographer',        price: 20000, max: 3  },
-  { id: 'reel_maker',             price: 8000,  max: 10 },
-  { id: 'drone',                  price: 12000, max: 3  },
-  { id: 'album_regular',          price: 3500,  max: 5  },
-  { id: 'album_premium',          price: 7500,  max: 5  },
-  { id: 'highlight_short',        price: 8000,  max: 1  },
-  { id: 'highlight_full',         price: 15000, max: 1  },
+  { id: 'candid_photographer', price: 15000, max: 5 },
+  { id: 'traditional_photographer', price: 8000, max: 5 },
+  { id: 'videographer', price: 10000, max: 5 },
+  { id: 'cinematographer', price: 20000, max: 3 },
+  { id: 'reel_maker', price: 8000, max: 10 },
+  { id: 'drone', price: 12000, max: 3 },
+  { id: 'album_regular', price: 3500, max: 5 },
+  { id: 'album_premium', price: 7500, max: 5 },
+  { id: 'highlight_short', price: 8000, max: 1 },
+  { id: 'highlight_full', price: 15000, max: 1 },
 ];
 
 function calcTotal(quantities: Record<string, number>) {
-  return SERVICES.reduce((sum, s) => sum + (quantities[s.id] ?? 0) * s.price, 0);
+  return SERVICES.reduce(
+    (sum, s) => sum + (quantities[s.id] ?? 0) * s.price,
+    0,
+  );
 }
 
 describe('calculator pricing', () => {
@@ -92,8 +97,8 @@ describe('phone validation', () => {
   });
 
   it('rejects numbers with wrong length', () => {
-    expect(isValidIndianPhone('987654321')).toBe(false);   // 9 digits
-    expect(isValidIndianPhone('98765432101')).toBe(false);  // 11 digits
+    expect(isValidIndianPhone('987654321')).toBe(false); // 9 digits
+    expect(isValidIndianPhone('98765432101')).toBe(false); // 11 digits
   });
 
   it('rejects non-numeric input', () => {

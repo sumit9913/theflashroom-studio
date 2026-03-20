@@ -59,7 +59,8 @@ export const metadata: Metadata = {
     'Wedding, pre-wedding, maternity, baby shower, birthday and corporate event photography & videography in Mumbai. Available Pan-India & internationally. Use our calculator for instant estimates.',
   alternates: { canonical: 'https://theflashroom.in/services' },
   openGraph: {
-    title: 'Photography & Videography Services in Mumbai | The Flash Room Studio',
+    title:
+      'Photography & Videography Services in Mumbai | The Flash Room Studio',
     description:
       'Professional photography and videography for every celebration. Mumbai-based, Pan-India coverage.',
     url: 'https://theflashroom.in/services',

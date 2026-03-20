@@ -239,8 +239,7 @@ export default function Services() {
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
               Every celebration is unique. Let's discuss your requirements and
-              create a custom package that perfectly fits your needs and
-              budget.
+              create a custom package that perfectly fits your needs and budget.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">

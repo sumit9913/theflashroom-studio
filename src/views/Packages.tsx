@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { Check, Sparkles } from 'lucide-react';
-import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo, useState } from 'react';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Button } from '@/components/ui/button';
@@ -289,12 +289,11 @@ export default function Packages() {
               Packages & Pricing
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-bold mt-4 mb-6">
-              Investment in{' '}
-              <span className="text-gold-gradient">Memories</span>
+              Investment in <span className="text-gold-gradient">Memories</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Transparent pricing for every budget. Choose the package that
-              fits your celebration, or contact us for a custom quote.
+              Transparent pricing for every budget. Choose the package that fits
+              your celebration, or contact us for a custom quote.
             </p>
           </motion.div>
         </div>
@@ -321,9 +320,7 @@ export default function Packages() {
             {services.map((service) => (
               <Button
                 key={service}
-                variant={
-                  service === selectedService ? 'gold' : 'gold-outline'
-                }
+                variant={service === selectedService ? 'gold' : 'gold-outline'}
                 onClick={() => setSelectedService(service)}
                 className="rounded-full px-6">
                 {service}
@@ -427,8 +424,7 @@ export default function Packages() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-              Need a{' '}
-              <span className="text-gold-gradient">Custom Package</span>?
+              Need a <span className="text-gold-gradient">Custom Package</span>?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
               Every celebration is unique. Let us create a custom package

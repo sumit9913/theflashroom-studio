@@ -171,8 +171,8 @@ export default function Book() {
               <span className="text-gold-gradient">Magic Together</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Fill in the details below and our team will get back to you
-              within 24 hours with a customized quote.
+              Fill in the details below and our team will get back to you within
+              24 hours with a customized quote.
             </p>
           </motion.div>
         </div>
@@ -451,9 +451,7 @@ export default function Book() {
                         <option value="instagram">Instagram</option>
                         <option value="facebook">Facebook</option>
                         <option value="google">Google Search</option>
-                        <option value="referral">
-                          Friend/Family Referral
-                        </option>
+                        <option value="referral">Friend/Family Referral</option>
                         <option value="wedding-portal">Wedding Portal</option>
                         <option value="other">Other</option>
                       </select>
@@ -494,8 +492,8 @@ export default function Book() {
             transition={{ delay: 0.3 }}
             className="mt-8 text-center">
             <p className="text-muted-foreground text-sm">
-              ✨ No commitment required. Our team will reach out to discuss
-              your needs and provide a custom quote.
+              ✨ No commitment required. Our team will reach out to discuss your
+              needs and provide a custom quote.
             </p>
           </motion.div>
         </div>

@@ -9,8 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://theflashroom.in/book' },
   openGraph: {
     title: 'Book a Photography Session | The Flash Room Studio',
-    description:
-      'Start planning your perfect shoot. We reply within 24 hours.',
+    description: 'Start planning your perfect shoot. We reply within 24 hours.',
     url: 'https://theflashroom.in/book',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

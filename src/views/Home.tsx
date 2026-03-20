@@ -116,8 +116,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-10">
-            Premium photography and videography for weddings, pre-weddings,
-            baby showers, and all your special celebrations
+            Premium photography and videography for weddings, pre-weddings, baby
+            showers, and all your special celebrations
           </motion.p>
 
           <motion.div
@@ -340,8 +340,7 @@ export default function Home() {
               Testimonials
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold mt-4 mb-6">
-              Words from{' '}
-              <span className="text-gold-gradient">Our Clients</span>
+              Words from <span className="text-gold-gradient">Our Clients</span>
             </h2>
           </motion.div>
 

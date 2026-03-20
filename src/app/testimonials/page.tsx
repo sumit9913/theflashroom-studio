@@ -12,8 +12,8 @@ const jsonLd = {
     ratingValue: '5.0',
     bestRating: '5',
     worstRating: '1',
-    ratingCount: '500',
-    reviewCount: '500',
+    ratingCount: '50',
+    reviewCount: '50',
   },
   review: [
     {
@@ -29,7 +29,7 @@ const jsonLd = {
       author: { '@type': 'Person', name: 'Sneha & Amit Kapoor' },
       reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
       reviewBody:
-        'Our pre-wedding shoot was absolutely magical! The team understood our vision perfectly and suggested the most beautiful locations. The photos look like they\'re straight out of a magazine.',
+        "Our pre-wedding shoot was absolutely magical! The team understood our vision perfectly and suggested the most beautiful locations. The photos look like they're straight out of a magazine.",
       datePublished: '2024-10-08',
     },
     {

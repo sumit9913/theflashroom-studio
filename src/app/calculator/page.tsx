@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
-
 import CalculatorClient from './CalculatorClient';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Package Calculator — Build Your Custom Photography Package',

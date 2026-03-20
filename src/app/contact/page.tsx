@@ -21,12 +21,27 @@ const jsonLd = {
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+        ],
         opens: '10:00',
         closes: '19:00',
       },
     ],
-    areaServed: ['Mumbai', 'Delhi', 'Bangalore', 'Jaipur', 'Udaipur', 'Goa', 'India'],
+    areaServed: [
+      'Mumbai',
+      'Delhi',
+      'Bangalore',
+      'Jaipur',
+      'Udaipur',
+      'Goa',
+      'India',
+    ],
   },
 };
 

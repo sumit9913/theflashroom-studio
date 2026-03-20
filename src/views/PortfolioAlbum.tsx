@@ -2,10 +2,10 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, MapPin, Image as ImageIcon } from 'lucide-react';
-import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
-import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 
 // ✅ Import the same images you already use
 import babyshower from '@/assets/babyshower.jpg';
@@ -165,29 +165,14 @@ export default function PortfolioAlbum() {
   }, [selectedIndex, album, closeLightbox, prev, next]);
 
   // ✅ EARLY RETURNS COME AFTER ALL HOOKS
-  if (!albumId) { router.replace('/portfolio'); return null; }
-  if (!album) { router.replace('/not-found'); return null; }
-
-  const canonicalUrl = `https://theflashroom.in/portfolio/${album.id}`;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ImageGallery',
-    name: `${album.title} | The Flash Room Studio`,
-    url: canonicalUrl,
-    about: [`${album.category} Photography`, `${album.category} Videography`],
-    locationCreated: album.location,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'The Flash Room Studio',
-      url: 'https://theflashroom.in',
-    },
-    associatedMedia: album.images.map((img, idx) => ({
-      '@type': 'ImageObject',
-      name: `${album.title} - Photo ${idx + 1}`,
-      contentUrl: canonicalUrl, // SPA assets won't have direct URLs; this is still fine for structured data.
-    })),
-  };
+  if (!albumId) {
+    router.replace('/portfolio');
+    return null;
+  }
+  if (!album) {
+    router.replace('/not-found');
+    return null;
+  }
 
   const openLightbox = (index: number) => setSelectedIndex(index);
 
@@ -267,8 +252,8 @@ export default function PortfolioAlbum() {
 
             {/* SEO helper */}
             <p className="sr-only">
-              {album.title} {album.category.toLowerCase()} photography album
-              in {album.location} by The Flash Room Studio
+              {album.title} {album.category.toLowerCase()} photography album in{' '}
+              {album.location} by The Flash Room Studio
             </p>
           </motion.div>
         </div>

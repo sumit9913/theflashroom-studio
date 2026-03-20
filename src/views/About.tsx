@@ -313,8 +313,8 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}>
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
-              Ready to Work{' '}
-              <span className="text-gold-gradient">Together</span>?
+              Ready to Work <span className="text-gold-gradient">Together</span>
+              ?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
               Tell us about your event and we'll suggest the right package

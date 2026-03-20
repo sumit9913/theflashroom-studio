@@ -69,9 +69,14 @@ export const localBusinessJsonLd = {
   ],
   sameAs: [
     'https://www.instagram.com/tfrstudio__',
-    'https://www.facebook.com',
-    'https://www.youtube.com',
+    // Add your actual Facebook page URL: 'https://www.facebook.com/yourpage'
+    // Add your actual YouTube channel URL: 'https://www.youtube.com/@yourchannel'
   ],
+  founder: {
+    '@type': 'Person',
+    name: 'Boopathy Durairaj',
+    jobTitle: 'Lead Photographer & Founder',
+  },
   knowsAbout: [
     'Wedding Photography',
     'Wedding Videography',
@@ -97,6 +102,7 @@ export const localBusinessJsonLd = {
     ratingValue: '5',
     bestRating: '5',
     worstRating: '1',
-    ratingCount: '25',
+    ratingCount: '50',
+    reviewCount: '50',
   },
 };

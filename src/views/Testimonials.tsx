@@ -203,8 +203,8 @@ export default function Testimonials() {
               <span className="text-gold-gradient">Story</span>?
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-              Join our family of happy clients. Let us capture the moments
-              that matter most to you.
+              Join our family of happy clients. Let us capture the moments that
+              matter most to you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/book">

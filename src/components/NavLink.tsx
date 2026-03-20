@@ -6,8 +6,10 @@ import { forwardRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-interface NavLinkCompatProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+interface NavLinkCompatProps extends Omit<
+  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  'href'
+> {
   href: string;
   className?: string;
   activeClassName?: string;

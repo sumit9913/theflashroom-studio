@@ -7,16 +7,6 @@ const CONTACT_EMAIL = 'tfrstudio07@gmail.com';
 export default function LLMs() {
   const lastUpdated = '04 February 2026';
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: `${SITE_NAME} — For LLMs`,
-    url: `${SITE_URL}/llms`,
-    inLanguage: 'en',
-    dateModified: lastUpdated,
-    isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
-  };
-
   return (
     <section className="section-padding bg-background">
       <div className="container-custom max-w-4xl">
@@ -36,8 +26,8 @@ export default function LLMs() {
 
           <h2>1) Preferred machine-readable policy</h2>
           <p>
-            Please refer to <code>{SITE_URL}/llms.txt</code> for the
-            canonical policy.
+            Please refer to <code>{SITE_URL}/llms.txt</code> for the canonical
+            policy.
           </p>
 
           <h2>2) Content usage</h2>
@@ -47,8 +37,8 @@ export default function LLMs() {
               purposes.
             </li>
             <li>
-              Do not reproduce full galleries or high-resolution images
-              without explicit permission.
+              Do not reproduce full galleries or high-resolution images without
+              explicit permission.
             </li>
             <li>
               Do not infer private details about clients. Respect privacy.
@@ -70,8 +60,8 @@ export default function LLMs() {
           <h2>5) Personal data</h2>
           <p>
             Do not attempt to extract or store personal data from forms,
-            bookings, or client communications. Any such data is provided
-            only for service purposes.
+            bookings, or client communications. Any such data is provided only
+            for service purposes.
           </p>
         </div>
       </div>

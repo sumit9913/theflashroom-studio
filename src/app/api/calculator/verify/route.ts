@@ -1,5 +1,5 @@
-import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 interface SelectedService {
   label: string;
@@ -10,18 +10,27 @@ interface SelectedService {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { name, eventDate, phone, selectedServices, subtotal, gst, total } = body as {
-    name: string;
-    eventDate: string;
-    phone: string;
-    selectedServices: SelectedService[];
-    subtotal: number;
-    gst: number;
-    total: number;
-  };
+  const { name, eventDate, phone, selectedServices, subtotal, gst, total } =
+    body as {
+      name: string;
+      eventDate: string;
+      phone: string;
+      selectedServices: SelectedService[];
+      subtotal: number;
+      gst: number;
+      total: number;
+    };
 
   try {
-    await notifyAdmin({ name, eventDate, phone, selectedServices, subtotal, gst, total });
+    await notifyAdmin({
+      name,
+      eventDate,
+      phone,
+      selectedServices,
+      subtotal,
+      gst,
+      total,
+    });
   } catch (err) {
     console.error('Admin email failed:', err);
   }
@@ -30,7 +39,13 @@ export async function POST(request: NextRequest) {
 }
 
 async function notifyAdmin({
-  name, eventDate, phone, selectedServices, subtotal, gst, total,
+  name,
+  eventDate,
+  phone,
+  selectedServices,
+  subtotal,
+  gst,
+  total,
 }: {
   name: string;
   eventDate: string;
@@ -45,13 +60,23 @@ async function notifyAdmin({
 
   const fmt = (n: number) => '₹' + n.toLocaleString('en-IN');
   const formattedDate = eventDate
-    ? new Date(eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    ? new Date(eventDate).toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
     : '—';
 
   if (!apiKey || !adminEmail) {
-    console.warn('[ADMIN NOTIFY] RESEND_API_KEY or ADMIN_EMAIL not set. Skipping email.');
-    console.log(`[ENQUIRY] Name: ${name} | Phone: +91${phone} | Event: ${formattedDate} | Total: ${fmt(total)}`);
-    selectedServices.forEach((s) => console.log(`  • ${s.label} ×${s.qty} = ${fmt(s.price * s.qty)}`));
+    console.warn(
+      '[ADMIN NOTIFY] RESEND_API_KEY or ADMIN_EMAIL not set. Skipping email.',
+    );
+    console.log(
+      `[ENQUIRY] Name: ${name} | Phone: +91${phone} | Event: ${formattedDate} | Total: ${fmt(total)}`,
+    );
+    selectedServices.forEach((s) =>
+      console.log(`  • ${s.label} ×${s.qty} = ${fmt(s.price * s.qty)}`),
+    );
     return;
   }
 

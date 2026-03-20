@@ -263,8 +263,8 @@ export default function Portfolio() {
               Wedding <span className="text-gold-gradient">Reels</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Watch our cinematic wedding films that capture the essence of
-              love and celebration
+              Watch our cinematic wedding films that capture the essence of love
+              and celebration
             </p>
           </motion.div>
 

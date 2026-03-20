@@ -19,31 +19,31 @@ const portfolioAlbumIds = [
 
 // Stable dates — update these manually when the page content actually changes
 const PAGE_DATES: Record<string, string> = {
-  home:        '2025-01-01',
-  services:    '2025-01-01',
-  portfolio:   '2025-01-01',
-  packages:    '2025-01-01',
-  about:       '2025-01-01',
-  contact:     '2025-01-01',
-  book:        '2025-01-01',
-  testimonials:'2025-01-01',
-  privacy:     '2025-01-01',
-  terms:       '2025-01-01',
+  home: '2026-03-20',
+  services: '2026-03-20',
+  portfolio: '2026-03-20',
+  packages: '2026-03-20',
+  about: '2026-03-20',
+  contact: '2026-03-20',
+  book: '2026-03-20',
+  testimonials: '2026-03-20',
+  privacy: '2026-01-01',
+  terms: '2026-01-01',
 };
 
 const ALBUM_DATES: Record<string, string> = {
-  'priya-rahul-wedding-udaipur':       '2025-01-01',
-  'sneha-amit-prewedding-jaipur':      '2025-01-01',
-  'traditional-haldi-mumbai':          '2025-01-01',
-  'sangeet-night-delhi':               '2025-01-01',
-  'sacred-phera-bangalore':            '2025-01-01',
-  'godh-bharai-pune':                  '2025-01-01',
-  '50th-birthday-mumbai':              '2025-01-01',
-  'corporate-annual-dinner-hyderabad': '2025-01-01',
-  'kavita-vikram-wedding-goa':         '2025-01-01',
-  'romantic-beach-prewedding-goa':     '2025-01-01',
-  'mehndi-night-jaipur':               '2025-01-01',
-  'baby-shower-chennai':               '2025-01-01',
+  'priya-rahul-wedding-udaipur': '2026-03-20',
+  'sneha-amit-prewedding-jaipur': '2026-03-20',
+  'traditional-haldi-mumbai': '2026-03-20',
+  'sangeet-night-delhi': '2026-03-20',
+  'sacred-phera-bangalore': '2026-03-20',
+  'godh-bharai-pune': '2026-03-20',
+  '50th-birthday-mumbai': '2026-03-20',
+  'corporate-annual-dinner-hyderabad': '2026-03-20',
+  'kavita-vikram-wedding-goa': '2026-03-20',
+  'romantic-beach-prewedding-goa': '2026-03-20',
+  'mehndi-night-jaipur': '2026-03-20',
+  'baby-shower-chennai': '2026-03-20',
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {

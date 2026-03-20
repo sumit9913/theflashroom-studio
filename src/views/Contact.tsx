@@ -161,8 +161,8 @@ export default function Contact() {
               Let's <span className="text-gold-gradient">Connect</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Have questions or ready to book? We'd love to hear from you.
-              Reach out and let's create something beautiful together.
+              Have questions or ready to book? We'd love to hear from you. Reach
+              out and let's create something beautiful together.
             </p>
           </motion.div>
         </div>
@@ -317,10 +317,7 @@ export default function Contact() {
                   Get quick responses via WhatsApp. We typically reply within
                   minutes!
                 </p>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <Button variant="gold-outline" className="gap-2">
                     <MessageCircle className="w-5 h-5" />
                     Quick Enquiry on WhatsApp
@@ -365,9 +362,7 @@ export default function Contact() {
                           <a
                             key={detail}
                             href={href}
-                            target={
-                              info.type === 'map' ? '_blank' : undefined
-                            }
+                            target={info.type === 'map' ? '_blank' : undefined}
                             rel={
                               info.type === 'map'
                                 ? 'noopener noreferrer'

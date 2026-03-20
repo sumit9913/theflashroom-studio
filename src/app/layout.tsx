@@ -1,15 +1,13 @@
-import type { Metadata, Viewport } from 'next';
-import {
-  Playfair_Display,
-  Cormorant_Garamond,
-  Inter,
-} from 'next/font/google';
+import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google';
 import Script from 'next/script';
+
+import Providers from './providers';
+
+import type { Metadata, Viewport } from 'next';
 
 import { GA_MEASUREMENT_ID } from '@/seo/googleAnalytics';
 import { localBusinessJsonLd } from '@/seo/localBusinessJsonLd';
 
-import Providers from './providers';
 import './globals.css';
 
 // Self-hosted fonts via next/font (eliminates render-blocking)
@@ -116,10 +114,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-
-  verification: {
-    // google: 'your-google-verification-code', // add when verified
-  },
 };
 
 export const viewport: Viewport = {
@@ -145,6 +139,26 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessJsonLd),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'The Flash Room Studio',
+              url: 'https://theflashroom.in',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate:
+                    'https://theflashroom.in/portfolio?q={search_term_string}',
+                },
+                'query-input': 'required name=search_term_string',
+              },
+            }),
           }}
         />
         <link rel="preload" href="/sounds/shutter.mp3" as="audio" />

@@ -1,15 +1,29 @@
-import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
 
 export async function POST(request: NextRequest) {
-  const { name, email, phone, eventType, eventDate, eventLocation, guestCount, budget, requirements, referral } =
-    await request.json();
+  const {
+    name,
+    email,
+    phone,
+    eventType,
+    eventDate,
+    eventLocation,
+    guestCount,
+    budget,
+    requirements,
+    referral,
+  } = await request.json();
 
   const formattedDate = eventDate
-    ? new Date(eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    ? new Date(eventDate).toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
     : '—';
 
   const row = (label: string, value: string) =>
@@ -37,10 +51,14 @@ export async function POST(request: NextRequest) {
         ${row('Budget Range', budget)}
       </table>
 
-      ${requirements ? `
+      ${
+        requirements
+          ? `
       <h3 style="color:#C5922A;margin:0 0 8px">Special Requirements</h3>
       <p style="background:#1e1b18;padding:16px;border-radius:6px;font-size:14px;line-height:1.6;margin:0 0 24px">${requirements.replace(/\n/g, '<br>')}</p>
-      ` : ''}
+      `
+          : ''
+      }
 
       <p style="margin:0;color:#9a9a8a;font-size:12px">Reply directly to this email to respond to the client.</p>
     </div>
@@ -56,6 +74,10 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error('Booking email failed:', err);
+    return NextResponse.json(
+      { success: false, error: 'Failed to send booking request' },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({ success: true });

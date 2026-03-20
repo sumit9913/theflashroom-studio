@@ -1,14 +1,19 @@
-import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL!;
 
 export async function POST(request: NextRequest) {
-  const { name, email, phone, eventType, eventDate, message } = await request.json();
+  const { name, email, phone, eventType, eventDate, message } =
+    await request.json();
 
   const formattedDate = eventDate
-    ? new Date(eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    ? new Date(eventDate).toLocaleDateString('en-IN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
     : '—';
 
   const html = `
@@ -41,6 +46,10 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error('Contact email failed:', err);
+    return NextResponse.json(
+      { success: false, error: 'Failed to send message' },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({ success: true });
