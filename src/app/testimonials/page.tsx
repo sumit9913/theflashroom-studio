@@ -54,12 +54,12 @@ const jsonLd = {
 export const metadata: Metadata = {
   title: 'Client Reviews & Testimonials',
   description:
-    'Read verified reviews from couples and families who trusted The Flash Room Studio. 500+ happy clients, 5-star Google rating. See what they say about our wedding and event photography.',
+    'Read verified reviews from couples and families who trusted The Flash Room Studio. 50+ happy clients, 5-star Google rating. See what they say about our wedding and event photography.',
   alternates: { canonical: 'https://theflashroom.in/testimonials' },
   openGraph: {
     title: 'Client Reviews & Testimonials | The Flash Room Studio',
     description:
-      '500+ happy clients. See real reviews from couples and families.',
+      '50+ happy clients. See real reviews from couples and families.',
     url: 'https://theflashroom.in/testimonials',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },

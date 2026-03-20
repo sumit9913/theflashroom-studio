@@ -6,7 +6,7 @@
   NODE_VERSION = "20"
   # NEXT_PUBLIC_* vars are intentionally embedded in client-side JS bundles.
   # GMAIL_USER is a public contact email used in source files for SEO/contact.
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_FIREBASE_API_KEY,NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,NEXT_PUBLIC_FIREBASE_PROJECT_ID,NEXT_PUBLIC_FIREBASE_APP_ID,GMAIL_USER,ADMIN_EMAIL"
+  SECRETS_SCAN_OMIT_KEYS = "ADMIN_EMAIL,RESEND_API_KEY"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

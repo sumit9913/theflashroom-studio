@@ -94,7 +94,7 @@ const teamMembers = [
   },
   {
     name: 'Manasi Maurya',
-    role: 'Admin',
+    role: 'Mrs.Admin',
     bio: 'Manasi keeps the studio running smoothly behind the scenes — managing operations, client coordination, and day-to-day workflow.',
   },
 ];

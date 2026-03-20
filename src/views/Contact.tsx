@@ -70,21 +70,11 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const formBody = new URLSearchParams({
-        'form-name': 'contact',
-        'bot-field': '',
-        ...formData,
-      }).toString();
-
-      const response = await fetch('/contact', {
+      await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-
-      if (!response.ok) {
-        throw new Error('Netlify form submission failed');
-      }
 
       toast({
         title: 'Message Sent!',

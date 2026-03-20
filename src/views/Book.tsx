@@ -75,22 +75,11 @@ export default function Book() {
       const eventTypeName =
         eventTypes.find((event) => event.id === formData.eventType)?.name ?? '';
 
-      const formBody = new URLSearchParams({
-        'form-name': 'booking',
-        'bot-field': '',
-        ...formData,
-        eventType: eventTypeName,
-      }).toString();
-
-      const response = await fetch('/booking', {
+      await fetch('/api/book', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, eventType: eventTypeName }),
       });
-
-      if (!response.ok) {
-        throw new Error('Netlify form submission failed');
-      }
 
       toast({
         title: 'Booking Request Submitted!',

@@ -167,10 +167,10 @@ export default function Testimonials() {
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { number: '500+', label: 'Weddings Captured' },
+              { number: '50+', label: 'Weddings Captured' },
               { number: '100%', label: 'Client Satisfaction' },
               { number: '5.0', label: 'Average Rating' },
-              { number: '1000+', label: 'Happy Families' },
+              { number: '100+', label: 'Happy Families' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
