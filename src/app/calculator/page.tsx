@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import Calculator from '@/views/Calculator';
+import CalculatorClient from './CalculatorClient';
 
 export const metadata: Metadata = {
   title: 'Package Calculator — Build Your Custom Photography Package',
@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function CalculatorPage() {
-  return <Calculator />;
+  return <CalculatorClient />;
 }

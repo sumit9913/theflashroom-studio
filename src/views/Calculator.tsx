@@ -1,15 +1,14 @@
 'use client';
 
-import { RecaptchaVerifier, signInWithPhoneNumber, type ConfirmationResult } from 'firebase/auth';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Camera, Video, Zap, BookOpen, Film,
-  Plus, Minus, CheckCircle, Loader2, Phone,
-  Lock, IndianRupee, Sparkles,
+  Plus, Minus, CheckCircle, Loader2,
+  Lock, IndianRupee, Sparkles, User, CalendarDays,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useMemo, useCallback, useRef } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Button } from '@/components/ui/button';
@@ -17,7 +16,6 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { auth } from '@/lib/firebase';
 
 // ─── Pricing config ────────────────────────────────────────────────────────────
 const SERVICES = [
@@ -43,58 +41,23 @@ const CATEGORIES = [
   { name: 'Films',       icon: Film },
 ] as const;
 
-// ─── OTP boxes ─────────────────────────────────────────────────────────────────
-function OtpBoxes({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const handleKey = (e: React.KeyboardEvent<HTMLInputElement>, idx: number) => {
-    if (e.key === 'Backspace' && !value[idx] && idx > 0) {
-      (document.getElementById(`otp-${idx - 1}`) as HTMLInputElement | null)?.focus();
-    }
-  };
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, idx: number) => {
-    const char = e.target.value.replace(/\D/g, '').slice(-1);
-    const arr = value.padEnd(6, ' ').split('');
-    arr[idx] = char || ' ';
-    const next = arr.join('').trimEnd();
-    onChange(next);
-    if (char && idx < 5)
-      (document.getElementById(`otp-${idx + 1}`) as HTMLInputElement | null)?.focus();
-  };
-
-  return (
-    <div className="flex gap-2 justify-center">
-      {Array.from({ length: 6 }).map((_, idx) => (
-        <input
-          key={idx}
-          id={`otp-${idx}`}
-          type="text"
-          inputMode="numeric"
-          maxLength={1}
-          value={value[idx] && value[idx] !== ' ' ? value[idx] : ''}
-          onChange={(e) => handleInput(e, idx)}
-          onKeyDown={(e) => handleKey(e, idx)}
-          className="w-11 h-12 text-center text-xl font-bold rounded-lg border-2 border-border bg-background text-foreground focus:border-gold focus:outline-none transition-colors"
-        />
-      ))}
-    </div>
-  );
-}
-
 // ─── Main ──────────────────────────────────────────────────────────────────────
 export default function Calculator() {
   const [quantities, setQuantities] = useState<Partial<Record<ServiceId, number>>>({});
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [step, setStep] = useState<'phone' | 'otp' | 'done'>('phone');
+  const [step, setStep] = useState<'form' | 'done'>('form');
+  const [name, setName] = useState('');
+  const [eventDate, setEventDate] = useState('');
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const confirmationRef = useRef<ConfirmationResult | null>(null);
-  const recaptchaRef = useRef<RecaptchaVerifier | null>(null);
 
-  const total = useMemo(
+  const subtotal = useMemo(
     () => SERVICES.reduce((sum, s) => sum + (quantities[s.id] ?? 0) * s.price, 0),
     [quantities],
   );
+  const gst = Math.round(subtotal * 0.18);
+  const total = subtotal + gst;
 
   const selectedServices = useMemo(
     () =>
@@ -116,50 +79,25 @@ export default function Calculator() {
 
   const openDialog = () => {
     if (selectedServices.length === 0) return;
-    setStep('phone'); setPhone(''); setOtp(''); setError('');
+    setStep('form'); setName(''); setEventDate(''); setPhone(''); setError('');
     setDialogOpen(true);
   };
 
-  const sendOtp = async () => {
+  const submitForm = async () => {
+    if (!name.trim()) { setError('Please enter your name.'); return; }
+    if (!eventDate) { setError('Please select your event date.'); return; }
     if (!/^\d{10}$/.test(phone)) { setError('Enter a valid 10-digit mobile number.'); return; }
     setLoading(true); setError('');
     try {
-      if (!recaptchaRef.current)
-        recaptchaRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', { size: 'invisible' });
-      const confirmation = await signInWithPhoneNumber(auth, `+91${phone}`, recaptchaRef.current);
-      confirmationRef.current = confirmation;
-      setStep('otp');
-    } catch (e: unknown) {
-      recaptchaRef.current?.clear();
-      recaptchaRef.current = null;
-      const code = (e as { code?: string })?.code ?? '';
-      const map: Record<string, string> = {
-        'auth/internal-error':      'Phone Auth not enabled in Firebase Console.',
-        'auth/too-many-requests':   'Too many attempts. Try again later.',
-        'auth/invalid-phone-number':'Invalid phone number.',
-        'auth/captcha-check-failed':'reCAPTCHA failed. Refresh and try again.',
-        'auth/quota-exceeded':      'SMS quota exceeded. Try again tomorrow.',
-      };
-      setError(map[code] ?? (e instanceof Error ? e.message : 'Failed to send OTP.'));
-    } finally { setLoading(false); }
-  };
-
-  const verifyOtp = async () => {
-    if (otp.replace(/\s/g, '').length !== 6) { setError('Enter the 6-digit OTP.'); return; }
-    if (!confirmationRef.current) { setError('Session expired. Request a new OTP.'); setStep('phone'); return; }
-    setLoading(true); setError('');
-    try {
-      await confirmationRef.current.confirm(otp.replace(/\s/g, ''));
       await fetch('/api/calculator/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone, selectedServices, total }),
+        body: JSON.stringify({ name: name.trim(), eventDate, phone, selectedServices, subtotal, gst, total }),
       });
       setStep('done');
       setDialogOpen(false);
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : 'Verification failed.';
-      setError(msg.includes('invalid-verification-code') ? 'Invalid OTP. Please try again.' : msg);
+    } catch {
+      setError('Something went wrong. Please try again.');
     } finally { setLoading(false); }
   };
 
@@ -180,7 +118,7 @@ export default function Calculator() {
               Build Your <span className="text-gold-gradient">Perfect Package</span>
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Pick exactly what you need. Verify your number to instantly unlock your personalised estimate.
+              Pick exactly what you need. Share your number to instantly unlock your personalised estimate.
             </p>
           </motion.div>
 
@@ -190,7 +128,7 @@ export default function Calculator() {
             className="flex items-center justify-center gap-3 mt-10 flex-wrap">
             {[
               { n: '1', label: 'Pick Services' },
-              { n: '2', label: 'Verify Number' },
+              { n: '2', label: 'Share Number' },
               { n: '3', label: 'Get Estimate' },
             ].map((s, i) => (
               <div key={s.n} className="flex items-center gap-3">
@@ -352,7 +290,7 @@ export default function Calculator() {
                   {step === 'done' ? (
                     <div className="flex items-start gap-2 text-sm text-green-400 bg-green-400/10 border border-green-400/20 rounded-xl p-3">
                       <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                      <span>Estimate unlocked! Our team will reach out to you shortly on <strong>+91 {phone}</strong>.</span>
+                      <span>Estimate unlocked! Our team will reach out to you shortly on <strong>+91 {phone}</strong>, {name}.</span>
                     </div>
                   ) : (
                     <Button
@@ -387,9 +325,19 @@ export default function Calculator() {
                         </li>
                       ))}
                     </ul>
-                    <div className="flex justify-between items-center border-t border-gold/20 mt-4 pt-4">
-                      <span className="font-semibold text-gold">Estimated Total</span>
-                      <span className="font-display text-2xl font-bold text-gold-gradient">{fmt(total)}</span>
+                    <div className="space-y-1.5 border-t border-gold/20 mt-4 pt-4 text-sm">
+                      <div className="flex justify-between text-foreground/70">
+                        <span>Subtotal</span>
+                        <span>{fmt(subtotal)}</span>
+                      </div>
+                      <div className="flex justify-between text-foreground/70">
+                        <span>GST (18%)</span>
+                        <span>{fmt(gst)}</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-2 border-t border-gold/20">
+                        <span className="font-semibold text-gold">Estimated Total</span>
+                        <span className="font-display text-2xl font-bold text-gold-gradient">{fmt(total)}</span>
+                      </div>
                     </div>
                     <p className="text-[11px] text-muted-foreground mt-3 leading-relaxed">
                       * Final pricing may vary based on event duration, location & specific requirements.
@@ -410,47 +358,64 @@ export default function Calculator() {
         </div>
       </section>
 
-      {/* Firebase invisible reCAPTCHA anchor */}
-      <div id="recaptcha-container" />
-
-      {/* ── OTP Dialog ── */}
+      {/* ── Enquiry Dialog ── */}
       <Dialog open={dialogOpen} onOpenChange={(o) => { if (!loading) setDialogOpen(o); }}>
         <DialogContent className="sm:max-w-sm bg-card border-border">
           <DialogHeader className="text-center">
             <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mx-auto mb-3">
-              {step === 'phone'
-                ? <Phone className="w-5 h-5 text-gold" />
-                : <Lock className="w-5 h-5 text-gold" />}
+              <Sparkles className="w-5 h-5 text-gold" />
             </div>
             <DialogTitle className="font-display text-xl">
-              {step === 'phone' ? 'Verify Your Number' : 'Enter OTP'}
+              Get Your Estimate
             </DialogTitle>
             <DialogDescription className="text-muted-foreground text-sm">
-              {step === 'phone'
-                ? "We'll send a one-time password to your mobile number."
-                : `OTP sent to +91 ${phone}. Valid for 10 minutes.`}
+              Fill in your details and we'll share a personalised estimate instantly.
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4 pt-1">
-            {step === 'phone' && (
-              <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">
-                <span className="flex items-center px-3 bg-muted/30 border-r border-border text-sm text-muted-foreground font-medium">
-                  +91
-                </span>
-                <Input
-                  type="tel"
-                  placeholder="10-digit mobile number"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                  className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                  maxLength={10}
-                  onKeyDown={(e) => e.key === 'Enter' && sendOtp()}
-                />
-              </div>
-            )}
+          <div className="space-y-3 pt-1">
+            {/* Name */}
+            <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">
+              <span className="flex items-center px-3 bg-muted/30 border-r border-border">
+                <User className="w-4 h-4 text-muted-foreground" />
+              </span>
+              <Input
+                type="text"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+              />
+            </div>
 
-            {step === 'otp' && <OtpBoxes value={otp} onChange={setOtp} />}
+            {/* Event date */}
+            <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">
+              <span className="flex items-center px-3 bg-muted/30 border-r border-border">
+                <CalendarDays className="w-4 h-4 text-muted-foreground" />
+              </span>
+              <Input
+                type="date"
+                value={eventDate}
+                onChange={(e) => setEventDate(e.target.value)}
+                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+              />
+            </div>
+
+            {/* Phone */}
+            <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">
+              <span className="flex items-center px-3 bg-muted/30 border-r border-border text-sm text-muted-foreground font-medium">
+                +91
+              </span>
+              <Input
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+                maxLength={10}
+                onKeyDown={(e) => e.key === 'Enter' && submitForm()}
+              />
+            </div>
 
             {error && (
               <div className="text-xs text-red-400 bg-red-400/10 border border-red-400/20 rounded-lg px-3 py-2 text-center">
@@ -459,21 +424,13 @@ export default function Calculator() {
             )}
 
             <div className="flex gap-3 pt-1">
-              {step === 'otp' && (
-                <Button
-                  variant="gold-outline" size="sm" className="flex-1"
-                  disabled={loading}
-                  onClick={() => { setStep('phone'); setOtp(''); setError(''); }}>
-                  Change
-                </Button>
-              )}
               <Button
                 variant="gold" className="flex-1"
                 disabled={loading}
-                onClick={step === 'phone' ? sendOtp : verifyOtp}>
+                onClick={submitForm}>
                 {loading
                   ? <Loader2 className="w-4 h-4 animate-spin" />
-                  : step === 'phone' ? 'Send OTP' : 'Verify & Unlock'}
+                  : 'Get My Estimate'}
               </Button>
             </div>
           </div>
