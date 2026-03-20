@@ -259,8 +259,9 @@ export default function Packages() {
   const [selectedService, setSelectedService] = useState<string>(
     services[0] ?? '',
   );
-  const selectedPackage = servicePackages.find(
-    (item) => item.service === selectedService,
+  const selectedPackage = useMemo(
+    () => servicePackages.find((item) => item.service === selectedService),
+    [selectedService],
   );
 
   return (

@@ -183,8 +183,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="container-custom py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} TheFlashRoom Studio. All rights
-            reserved.
+            © 2026 TheFlashRoom Studio. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="/privacy" className="hover:text-gold transition-colors">

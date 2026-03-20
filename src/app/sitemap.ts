@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 
+import { BLOG_POSTS } from '@/lib/blog';
+
 const BASE_URL = 'https://theflashroom.in';
 
 const portfolioAlbumIds = [
@@ -92,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/calculator`,
-      lastModified: '2025-01-01',
+      lastModified: '2026-03-20',
       changeFrequency: 'monthly',
       priority: 0.9,
     },
@@ -118,10 +120,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const albumPages: MetadataRoute.Sitemap = portfolioAlbumIds.map((id) => ({
     url: `${BASE_URL}/portfolio/${id}`,
-    lastModified: ALBUM_DATES[id] ?? '2025-01-01',
+    lastModified: ALBUM_DATES[id] ?? '2026-03-20',
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
-  return [...corePages, ...albumPages];
+  const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: post.date,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  const blogIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/blog`,
+      lastModified: BLOG_POSTS[0].date,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+  ];
+
+  return [...corePages, ...albumPages, ...blogIndex, ...blogPages];
 }

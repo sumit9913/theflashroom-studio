@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Filter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import babyshower from '@/assets/babyshower.jpg';
 import birthday from '@/assets/birthday.jpg';
@@ -134,9 +134,13 @@ const reels = [
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const filteredAlbums = portfolioAlbums.filter(
-    (album) =>
-      selectedCategory === 'All' || album.category === selectedCategory,
+  const filteredAlbums = useMemo(
+    () =>
+      portfolioAlbums.filter(
+        (album) =>
+          selectedCategory === 'All' || album.category === selectedCategory,
+      ),
+    [selectedCategory],
   );
 
   return (

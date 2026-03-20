@@ -52,6 +52,9 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
 
+      // Escape characters in content strings are intentional
+      'no-useless-escape': 'off',
+
       // Prettier blocks commit if formatting fails
       'prettier/prettier': 'error',
     },

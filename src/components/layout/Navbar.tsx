@@ -15,6 +15,7 @@ const navLinks = [
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'Packages', path: '/packages' },
   { name: 'Calculator', path: '/calculator' },
+  { name: 'Blog', path: '/blog' },
   { name: 'Testimonials', path: '/testimonials' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -25,10 +26,16 @@ export function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > 50);
+        ticking = false;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

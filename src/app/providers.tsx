@@ -1,14 +1,13 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { InitialLoader } from '@/components/common/InitialLoader';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { WhatsAppButton } from '@/components/layout/WhatsAppButton';
-import { Toaster as Sonner } from '@/components/ui/sonner';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { usePageTracking } from '@/seo/usePageTracking';
@@ -40,21 +39,17 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <InitialLoader show={showLoader} />
-
-        {!showLoader && (
-          <>
-            <Toaster />
-            <Sonner />
-            <PageTracker />
-            <ScrollToTop />
-            <div className="min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          </>
-        )}
+        <Toaster />
+        <Suspense fallback={null}>
+          <PageTracker />
+        </Suspense>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );
