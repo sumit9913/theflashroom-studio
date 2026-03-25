@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion';
 import { Calendar, Check, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Button } from '@/components/ui/button';
+import { DatePicker } from '@/components/ui/date-picker';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
@@ -351,12 +352,11 @@ export default function Book() {
                         <label className="block text-sm font-medium text-foreground mb-2">
                           Event Date
                         </label>
-                        <Input
-                          type="date"
+                        <DatePicker
                           name="eventDate"
                           value={formData.eventDate}
-                          onChange={handleChange}
-                          className="bg-background border-border focus:border-gold"
+                          onChange={(val) => handleChange({ target: { name: 'eventDate', value: val } } as React.ChangeEvent<HTMLInputElement>)}
+                          className="bg-background border-border"
                         />
                       </div>
                       <div>

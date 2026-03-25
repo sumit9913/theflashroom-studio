@@ -15,7 +15,6 @@ import {
   IndianRupee,
   Sparkles,
   User,
-  CalendarDays,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,6 +22,7 @@ import { useState, useMemo, useCallback } from 'react';
 
 import heroWedding from '@/assets/hero-wedding.jpg';
 import { Button } from '@/components/ui/button';
+import { DatePicker } from '@/components/ui/date-picker';
 import {
   Dialog,
   DialogContent,
@@ -567,17 +567,11 @@ export default function Calculator() {
             </div>
 
             {/* Event date */}
-            <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">
-              <span className="flex items-center px-3 bg-muted/30 border-r border-border">
-                <CalendarDays className="w-4 h-4 text-muted-foreground" />
-              </span>
-              <Input
-                type="date"
-                value={eventDate}
-                onChange={(e) => setEventDate(e.target.value)}
-                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-              />
-            </div>
+            <DatePicker
+              value={eventDate}
+              onChange={setEventDate}
+              className="bg-transparent border-border"
+            />
 
             {/* Phone */}
             <div className="flex rounded-lg border border-border overflow-hidden focus-within:border-gold transition-colors">

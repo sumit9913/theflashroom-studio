@@ -15,7 +15,7 @@ const servicePackages = [
     plans: [
       {
         name: 'Cost-Effective',
-        price: '₹45,000',
+        //price: '₹45,000',
         description: 'Essential coverage for intimate weddings',
         features: [
           '6 hours of coverage',
@@ -29,7 +29,7 @@ const servicePackages = [
       },
       {
         name: 'Intermediate',
-        price: '₹1,00,000',
+        //price: '₹1,00,000',
         description: 'Complete coverage for your special day',
         features: [
           'Full day coverage',
@@ -44,7 +44,7 @@ const servicePackages = [
       },
       {
         name: 'Premium',
-        price: '₹2,50,000',
+        //price: '₹2,50,000',
         description: 'The ultimate wedding documentation',
         features: [
           'Multi-day coverage',
@@ -377,7 +377,7 @@ export default function Packages() {
                           {plan.price}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Starting price
+                          .|.{/* Starting Price */}
                         </p>
                       </div>
                       <p className="text-sm text-muted-foreground">
