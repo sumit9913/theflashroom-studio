@@ -1,6 +1,6 @@
 # llms.txt for The Flash Room Studio
 # Canonical: https://theflashroom.in/llms.txt
-# Last updated: 2026-02-04
+# Last updated: 2026-03-25
 
 site: https://theflashroom.in
 contact: tfrstudio07@gmail.com
