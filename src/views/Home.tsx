@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import {
   Play,
   ChevronDown,
@@ -64,6 +65,14 @@ const testimonials = [
   },
 ];
 
+const heroSlides = [
+  { src: heroWedding, alt: 'Luxury Indian wedding photography in Mumbai' },
+  { src: prewedding, alt: 'Pre-wedding shoot by The Flash Room Studio' },
+  { src: haldi, alt: 'Haldi ceremony photography' },
+  { src: sangeet, alt: 'Sangeet celebration photography' },
+  { src: phera, alt: 'Phera ceremony photography' },
+];
+
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
@@ -74,20 +83,39 @@ const fadeUpVariants = {
 };
 
 export default function Home() {
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroIndex((i) => (i + 1) % heroSlides.length);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-[100dvh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Carousel Background */}
         <div className="absolute inset-0">
-          <Image
-            src={heroWedding}
-            alt="Luxury Indian wedding photography in Mumbai by The Flash Room Studio"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
+          <AnimatePresence>
+            <motion.div
+              key={heroIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: 'easeInOut' }}
+              className="absolute inset-0">
+              <Image
+                src={heroSlides[heroIndex].src}
+                alt={heroSlides[heroIndex].alt}
+                fill
+                className="object-cover"
+                priority={heroIndex === 0}
+                sizes="100vw"
+              />
+            </motion.div>
+          </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         </div>
 
@@ -140,6 +168,20 @@ export default function Home() {
               </Button>
             </Link>
           </motion.div>
+        </div>
+
+        {/* Carousel Dots */}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setHeroIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === heroIndex ? 'w-6 bg-gold' : 'w-1.5 bg-foreground/40 hover:bg-foreground/60'
+              }`}
+            />
+          ))}
         </div>
 
         {/* Scroll Indicator */}
