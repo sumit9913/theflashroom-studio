@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  Camera,
   Instagram,
   Youtube,
   Facebook,
@@ -9,6 +8,7 @@ import {
   Phone,
   MapPin,
 } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const footerLinks = {
@@ -36,16 +36,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <Camera className="w-8 h-8 text-gold" />
-              <div className="flex flex-col">
-                <span className="font-display text-xl font-semibold text-gold-gradient">
-                  TheFlashRoom
-                </span>
-                <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
-                  Studio
-                </span>
-              </div>
+            <Link href="/" className="inline-flex mb-6">
+              <Image
+                src="/og-image2.png"
+                alt="TheFlashRoom Studio"
+                width={160}
+                height={56}
+                className="h-14 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Turning moments into timeless memories. We capture the emotions,

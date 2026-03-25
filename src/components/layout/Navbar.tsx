@@ -1,7 +1,8 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Camera } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -54,19 +55,15 @@ export function Navbar() {
         }`}>
         <div className="container-custom flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <Camera className="w-8 h-8 text-gold transition-transform duration-300 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display text-xl font-semibold text-gold-gradient">
-                TheFlashRoom
-              </span>
-              <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
-                Studio
-              </span>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/og-image2.png"
+              alt="TheFlashRoom Studio"
+              width={160}
+              height={56}
+              className="h-20 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

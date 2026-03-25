@@ -163,7 +163,7 @@ export default function RootLayout({
         />
         <link rel="preload" href="/sounds/shutter.mp3" as="audio" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Providers>{children}</Providers>
 
         {/* Google Analytics 4 */}
