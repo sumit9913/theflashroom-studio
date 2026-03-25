@@ -1,138 +1,37 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Filter } from 'lucide-react';
+import { Play, Filter, X, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
 
-import babyshower from '@/assets/babyshower.jpg';
-import birthday from '@/assets/birthday.jpg';
-import event from '@/assets/event.jpg';
-import haldi from '@/assets/haldi.jpg';
-import heroWedding from '@/assets/hero-wedding.jpg';
 import phera from '@/assets/phera.jpg';
-import prewedding from '@/assets/prewedding.jpg';
-import sangeet from '@/assets/sangeet.jpg';
+import { Button } from '@/components/ui/button';
+import {
+  categories,
+  portfolioAlbums,
+  reels,
+} from '@/data/portfolioAlbums';
 
-const categories = [
-  'All',
-  'Weddings',
-  'Pre-Weddings',
-  'Events',
-  'Baby Showers',
-  'Maternity',
-  'Others',
-];
+import type { StaticImageData } from 'next/image';
 
-const portfolioAlbums = [
-  {
-    id: 'priya-rahul-wedding-udaipur',
-    title: 'Priya & Rahul Wedding',
-    category: 'Weddings',
-    location: 'Udaipur',
-    cover: heroWedding,
-    images: [heroWedding, haldi, sangeet, phera],
-  },
-  {
-    id: 'sneha-amit-prewedding-jaipur',
-    title: 'Sneha & Amit Pre-Wedding',
-    category: 'Pre-Weddings',
-    location: 'Jaipur',
-    cover: prewedding,
-    images: [prewedding, heroWedding, event],
-  },
-  {
-    id: 'traditional-haldi-mumbai',
-    title: 'Traditional Haldi Ceremony',
-    category: 'Weddings',
-    location: 'Mumbai',
-    cover: haldi,
-    images: [haldi, heroWedding, sangeet],
-  },
-  {
-    id: 'sangeet-night-delhi',
-    title: 'Sangeet Night Celebration',
-    category: 'Weddings',
-    location: 'Delhi',
-    cover: sangeet,
-    images: [sangeet, heroWedding, phera],
-  },
-  {
-    id: 'sacred-phera-bangalore',
-    title: 'Sacred Phera Ceremony',
-    category: 'Weddings',
-    location: 'Bangalore',
-    cover: phera,
-    images: [phera, heroWedding, haldi],
-  },
-  {
-    id: 'godh-bharai-pune',
-    title: 'Godh Bharai Celebration',
-    category: 'Baby Showers',
-    location: 'Pune',
-    cover: babyshower,
-    images: [babyshower, heroWedding, birthday],
-  },
-  {
-    id: '50th-birthday-mumbai',
-    title: '50th Birthday Celebration',
-    category: 'Others',
-    location: 'Mumbai',
-    cover: birthday,
-    images: [birthday, event, heroWedding],
-  },
-  {
-    id: 'corporate-annual-dinner-hyderabad',
-    title: 'Corporate Annual Dinner',
-    category: 'Events',
-    location: 'Hyderabad',
-    cover: event,
-    images: [event, heroWedding, birthday],
-  },
-  {
-    id: 'kavita-vikram-wedding-goa',
-    title: 'Kavita & Vikram Wedding',
-    category: 'Weddings',
-    location: 'Goa',
-    cover: heroWedding,
-    images: [heroWedding, phera, sangeet],
-  },
-  {
-    id: 'romantic-beach-prewedding-goa',
-    title: 'Romantic Beach Pre-Wedding Shoot',
-    category: 'Pre-Weddings',
-    location: 'Goa',
-    cover: prewedding,
-    images: [prewedding, heroWedding, sangeet],
-  },
-  {
-    id: 'mehndi-night-jaipur',
-    title: 'Mehndi Night Celebration',
-    category: 'Weddings',
-    location: 'Jaipur',
-    cover: sangeet,
-    images: [sangeet, haldi, heroWedding],
-  },
-  {
-    id: 'baby-shower-chennai',
-    title: 'Baby Shower Party',
-    category: 'Baby Showers',
-    location: 'Chennai',
-    cover: babyshower,
-    images: [babyshower, birthday, heroWedding],
-  },
-];
-
-const reels = [
-  { id: 1, title: 'Priya & Rahul - Wedding Film', thumbnail: heroWedding },
-  { id: 2, title: 'Destination Wedding Highlights', thumbnail: phera },
-  { id: 3, title: 'Pre-Wedding Love Story', thumbnail: prewedding },
-  { id: 4, title: 'Sangeet Night Recap', thumbnail: sangeet },
-];
+type Album = {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  cover: StaticImageData | string;
+  images: (StaticImageData | string)[];
+};
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [lightboxAlbum, setLightboxAlbum] = useState<Album | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const swipeThreshold = 50;
 
   const filteredAlbums = useMemo(
     () =>
@@ -142,6 +41,52 @@ export default function Portfolio() {
       ),
     [selectedCategory],
   );
+
+  const openLightbox = useCallback((album: Album, index = 0) => {
+    setLightboxAlbum(album);
+    setLightboxIndex(index);
+  }, []);
+
+  const closeLightbox = useCallback(() => setLightboxAlbum(null), []);
+
+  const prev = useCallback(() => {
+    setLightboxIndex((i) =>
+      lightboxAlbum ? (i - 1 + lightboxAlbum.images.length) % lightboxAlbum.images.length : i,
+    );
+  }, [lightboxAlbum]);
+
+  const next = useCallback(() => {
+    setLightboxIndex((i) =>
+      lightboxAlbum ? (i + 1) % lightboxAlbum.images.length : i,
+    );
+  }, [lightboxAlbum]);
+
+  useEffect(() => {
+    if (!lightboxAlbum) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [lightboxAlbum, closeLightbox, prev, next]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > swipeThreshold) {
+      dx > 0 ? prev() : next();
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
 
   return (
     <>
@@ -217,7 +162,10 @@ export default function Portfolio() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className={`group ${index % 5 === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
-                  <Link href={`/portfolio/${album.id}`} className={`block ${index % 5 === 0 ? 'h-full' : ''}`}>
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(album as Album)}
+                    className={`block w-full text-left ${index % 5 === 0 ? 'h-full' : ''}`}>
                     <div className={`relative overflow-hidden rounded-lg ${index % 5 === 0 ? 'aspect-square md:aspect-auto md:h-full' : 'aspect-square'}`}>
                       <Image
                         src={album.cover}
@@ -235,21 +183,100 @@ export default function Portfolio() {
                           <p className="text-gold text-xs md:text-sm">
                             {album.location}
                           </p>
-
-                          {/* SEO helper text */}
                           <p className="sr-only">
                             View {album.title} album from {album.location}
                           </p>
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxAlbum && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-lg flex items-center justify-center p-4"
+            onClick={closeLightbox}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}>
+            {/* Close */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-muted flex items-center justify-center text-foreground hover:bg-gold hover:text-background transition-colors"
+              aria-label="Close">
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Prev */}
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-muted items-center justify-center text-foreground hover:bg-gold hover:text-background transition-colors text-2xl"
+              aria-label="Previous">
+              ‹
+            </button>
+
+            {/* Next */}
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-muted items-center justify-center text-foreground hover:bg-gold hover:text-background transition-colors text-2xl"
+              aria-label="Next">
+              ›
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.96, opacity: 0 }}
+              className="max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}>
+              <Image
+                src={lightboxAlbum.images[lightboxIndex]}
+                alt={`${lightboxAlbum.title} photo ${lightboxIndex + 1}`}
+                width={1200}
+                height={800}
+                className="w-full h-auto max-h-[72vh] object-contain rounded-lg"
+                sizes="(max-width: 768px) 100vw, 90vw"
+              />
+
+              <div className="flex items-center justify-between mt-5">
+                <div>
+                  <p className="font-display font-semibold text-foreground">
+                    {lightboxAlbum.title}
+                  </p>
+                  <p className="text-gold text-sm">{lightboxAlbum.location}</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-muted-foreground text-sm">
+                    {lightboxIndex + 1} / {lightboxAlbum.images.length}
+                  </span>
+                  <Link
+                    href={`/portfolio/${lightboxAlbum.id}`}
+                    onClick={closeLightbox}
+                    className="inline-flex items-center gap-1.5 text-sm text-gold hover:underline font-medium">
+                    View full album
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Mobile controls */}
+              <div className="md:hidden flex justify-center gap-4 mt-4">
+                <Button variant="gold-outline" onClick={prev}>Prev</Button>
+                <Button variant="gold-outline" onClick={next}>Next</Button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Reels Section */}
       <section className="section-padding bg-card">
@@ -304,45 +331,6 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
-
-      {/* Lightbox */}
-      {/* <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 backdrop-blur-lg flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-muted flex items-center justify-center text-foreground hover:bg-gold hover:text-background transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="max-w-5xl w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.title}
-                className="w-full h-auto max-h-[80vh] object-contain rounded-lg"
-              />
-              <div className="text-center mt-6">
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">
-                  {selectedImage.title}
-                </h3>
-                <p className="text-gold">{selectedImage.location}</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence> */}
     </>
   );
 }

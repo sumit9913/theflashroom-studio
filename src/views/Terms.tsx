@@ -1,8 +1,12 @@
 'use client';
 
-const SITE_NAME = 'The Flash Room Studio';
-const CONTACT_EMAIL = 'tfrstudio07@gmail.com';
-const CONTACT_PHONE = '+91 91366 98930';
+import { SITE_CONFIG } from '@/lib/siteConfig';
+
+const SITE_NAME = SITE_CONFIG.name;
+const CONTACT_EMAIL = SITE_CONFIG.email.primary;
+const CONTACT_EMAIL_HREF = SITE_CONFIG.email.primaryHref;
+const CONTACT_PHONE = SITE_CONFIG.phone.primary;
+const CONTACT_PHONE_HREF = SITE_CONFIG.phone.primaryHref;
 
 function Section({
   number,
@@ -179,13 +183,13 @@ export default function Terms() {
             <p>
               Questions? Email{' '}
               <a
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={CONTACT_EMAIL_HREF}
                 className="text-gold hover:underline">
                 {CONTACT_EMAIL}
               </a>{' '}
               or call{' '}
               <a
-                href={`tel:${CONTACT_PHONE}`}
+                href={CONTACT_PHONE_HREF}
                 className="text-gold hover:underline">
                 {CONTACT_PHONE}
               </a>

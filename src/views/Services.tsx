@@ -247,6 +247,11 @@ export default function Services() {
                   Contact Us
                 </Button>
               </Link>
+              <Link href="/calculator">
+                <Button variant="gold-outline" size="lg">
+                  Build Your Package
+                </Button>
+              </Link>
               <Link href="/book">
                 <Button variant="gold-outline" size="lg">
                   Book a Consultation

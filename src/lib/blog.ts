@@ -630,7 +630,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: 'p',
-        text: 'Get everything in writing. How many hours? How many photographers? What events are covered? How many edited photos? Video or no video? If video, what length? Albums? Drone? Reels? The difference between a ₹80,000 and a ₹1,50,000 quote often comes down to these specifics — not the quality of the photography itself.',
+        text: 'Get everything in writing. How many hours? How many photographers? What events are covered? How many edited photos? Video or no video? If video, what length? Albums? Drone? Reels? The difference between a ₹80,000 and a ₹1,00,000 quote often comes down to these specifics — not the quality of the photography itself.',
       },
       {
         type: 'h2',

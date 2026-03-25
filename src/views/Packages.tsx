@@ -15,7 +15,7 @@ const servicePackages = [
     plans: [
       {
         name: 'Cost-Effective',
-        price: '₹75,000',
+        price: '₹45,000',
         description: 'Essential coverage for intimate weddings',
         features: [
           '6 hours of coverage',
@@ -29,7 +29,7 @@ const servicePackages = [
       },
       {
         name: 'Intermediate',
-        price: '₹1,50,000',
+        price: '₹1,00,000',
         description: 'Complete coverage for your special day',
         features: [
           'Full day coverage',
@@ -44,7 +44,7 @@ const servicePackages = [
       },
       {
         name: 'Premium',
-        price: '₹3,00,000',
+        price: '₹2,50,000',
         description: 'The ultimate wedding documentation',
         features: [
           'Multi-day coverage',
@@ -142,7 +142,7 @@ const servicePackages = [
       },
       {
         name: 'Premium',
-        price: '₹75,000',
+        price: '₹45,000',
         description: 'Full event documentation package',
         features: [
           'Full event coverage',
@@ -373,9 +373,12 @@ export default function Packages() {
                         package in Mumbai
                       </p>
                       <div className="mb-3">
-                        <span className="inline-block text-xs font-semibold text-gold bg-gold/10 px-3 py-1 rounded-full uppercase tracking-widest">
-                          Custom Pricing
-                        </span>
+                        <div className="font-display text-3xl font-bold text-foreground">
+                          {plan.price}
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Starting price
+                        </p>
                       </div>
                       <p className="text-sm text-muted-foreground">
                         {plan.description}
@@ -413,6 +416,36 @@ export default function Packages() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Calculator CTA */}
+      <section className="section-padding bg-background border-t border-border">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl border border-gold/20 bg-gradient-to-r from-gold/5 via-gold/10 to-gold/5 p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+            <div className="flex-1">
+              <span className="text-gold text-sm font-medium tracking-widest uppercase">
+                Build Your Own
+              </span>
+              <h2 className="font-display text-2xl md:text-3xl font-bold mt-2 mb-3">
+                Not sure which package fits?
+              </h2>
+              <p className="text-muted-foreground max-w-lg">
+                Use our interactive calculator — pick exactly the services you
+                need and get an instant personalised estimate.
+              </p>
+            </div>
+            <Link href="/calculator" className="flex-shrink-0">
+              <Button variant="gold" size="lg" className="gap-2">
+                Try the Calculator
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

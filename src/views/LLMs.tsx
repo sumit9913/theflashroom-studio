@@ -1,8 +1,11 @@
 'use client';
 
-const SITE_NAME = 'The Flash Room Studio';
-const SITE_URL = 'https://theflashroom.in';
-const CONTACT_EMAIL = 'tfrstudio07@gmail.com';
+import { SITE_CONFIG } from '@/lib/siteConfig';
+
+const SITE_NAME = SITE_CONFIG.name;
+const SITE_URL = SITE_CONFIG.url;
+const CONTACT_EMAIL = SITE_CONFIG.email.primary;
+const CONTACT_EMAIL_HREF = SITE_CONFIG.email.primaryHref;
 
 function Section({
   number,
@@ -133,7 +136,7 @@ export default function LLMs() {
             <p>
               For data, privacy, or content permission enquiries, contact{' '}
               <a
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={CONTACT_EMAIL_HREF}
                 className="text-gold hover:underline">
                 {CONTACT_EMAIL}
               </a>

@@ -46,7 +46,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">{children}</main>
           <Footer />
           <WhatsAppButton />
         </div>

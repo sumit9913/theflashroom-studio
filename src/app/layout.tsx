@@ -164,6 +164,12 @@ export default function RootLayout({
         <link rel="preload" href="/sounds/shutter.mp3" as="audio" />
       </head>
       <body suppressHydrationWarning>
+        {/* Skip to main content — keyboard / screen-reader accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-gold focus:text-background focus:rounded-lg focus:text-sm focus:font-semibold focus:outline-none focus:shadow-lg">
+          Skip to main content
+        </a>
         <Providers>{children}</Providers>
 
         {/* Google Analytics 4 */}
