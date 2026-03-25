@@ -25,6 +25,7 @@ import phera from '@/assets/phera.jpg';
 import prewedding from '@/assets/prewedding.jpg';
 import sangeet from '@/assets/sangeet.jpg';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const services = [
   { name: 'Weddings', icon: Heart, image: heroWedding },
@@ -298,11 +299,15 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className={`relative group overflow-hidden rounded-lg ${
-                  index === 0 ? 'md:col-span-2 md:row-span-2' : ''
-                }`}>
+                className={cn(
+                  'relative group overflow-hidden rounded-lg',
+                  index === 0 && 'md:col-span-2 md:row-span-2'
+                )}>
                 <div
-                  className={`relative aspect-square ${index === 0 ? 'md:aspect-auto md:h-full' : ''}`}>
+                  className={cn(
+                    'relative aspect-square',
+                    index === 0 && 'md:aspect-auto md:h-full'
+                  )}>
                   <Image
                     src={img.src}
                     alt={`${img.category} photography in Mumbai by The Flash Room Studio`}
