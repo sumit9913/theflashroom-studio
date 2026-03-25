@@ -151,7 +151,7 @@ export default function Services() {
       {/* Services List */}
       <section className="py-20 bg-background">
         <div className="container-custom">
-          <div className="space-y-32">
+          <div className="space-y-16 md:space-y-24 lg:space-y-32">
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -178,8 +178,8 @@ export default function Services() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                   </div>
                   {/* Decorative element */}
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold/30 rounded-lg -z-10" />
-                  <div className="absolute -top-4 -left-4 w-24 h-24 border-2 border-gold/30 rounded-lg -z-10" />
+                  <div className="hidden sm:block absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold/30 rounded-lg -z-10" />
+                  <div className="hidden sm:block absolute -top-4 -left-4 w-24 h-24 border-2 border-gold/30 rounded-lg -z-10" />
                 </div>
 
                 {/* Content */}

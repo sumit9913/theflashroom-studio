@@ -158,7 +158,7 @@ export default function About() {
                   height={450}
                   className="rounded-lg w-full h-auto"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-gold text-background p-6 rounded-lg">
+                <div className="absolute bottom-4 right-4 sm:-bottom-6 sm:-right-6 bg-gold text-background p-4 sm:p-6 rounded-lg">
                   <div className="font-display text-3xl font-bold">5+</div>
                   <div className="text-sm">Years of Excellence</div>
                 </div>
@@ -277,7 +277,7 @@ export default function About() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.name}
@@ -285,8 +285,8 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.6 }}
-                className="bg-background rounded-xl p-8 border border-border hover:border-gold/30 transition-colors duration-300">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center mb-6">
+                className="bg-background rounded-xl p-5 md:p-8 border border-border hover:border-gold/30 transition-colors duration-300">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center mb-4 md:mb-6">
                   <span className="font-display text-2xl font-bold text-background">
                     {member.name.charAt(0)}
                   </span>

@@ -178,10 +178,10 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}>
-                <div className="font-display text-4xl md:text-5xl font-bold text-gold-gradient mb-2">
+                <div className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-2">
                   {stat.number}
                 </div>
-                <div className="text-muted-foreground text-sm">
+                <div className="text-muted-foreground text-xs sm:text-sm">
                   {stat.label}
                 </div>
               </motion.div>

@@ -217,8 +217,8 @@ export default function Portfolio() {
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className={`group ${index % 5 === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
-                  <Link href={`/portfolio/${album.id}`} className="block">
-                    <div className="relative overflow-hidden rounded-lg aspect-square h-full">
+                  <Link href={`/portfolio/${album.id}`} className={`block ${index % 5 === 0 ? 'h-full' : ''}`}>
+                    <div className={`relative overflow-hidden rounded-lg ${index % 5 === 0 ? 'aspect-square md:aspect-auto md:h-full' : 'aspect-square'}`}>
                       <Image
                         src={album.cover}
                         alt={`${album.title} - ${album.category} photography in ${album.location} by The Flash Room Studio`}

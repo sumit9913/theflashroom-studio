@@ -379,7 +379,7 @@ export default function Calculator() {
             </div>
 
             {/* Right — sidebar */}
-            <div className="lg:sticky lg:top-28 space-y-4">
+            <div className="order-first lg:order-none lg:sticky lg:top-28 space-y-4">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
